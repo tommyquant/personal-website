@@ -1,0 +1,9 @@
+baseURL = ""
+languageCode = "en-us"
+title = "Tommy Tran"
+
+disableKinds = ["section", "taxonomy", "taxonomyTerm", "RSS"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
