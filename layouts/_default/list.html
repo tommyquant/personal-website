@@ -1,5 +1,7 @@
 {{ define "content" }}
 
+{{ .Content }}
+
 <div class="columns is-multiline">
     {{ range .Pages }} {{ $dir := .Dir }} {{ $feature := .Params.feature }} {{ $feature := replace $feature "/" "\\"}}
 
