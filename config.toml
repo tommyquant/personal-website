@@ -1,6 +1,6 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "Tommy T."
+title = "Magical Space Brigade"
 
 disableKinds = ["section", "taxonomy", "taxonomyTerm", "RSS"]
 
