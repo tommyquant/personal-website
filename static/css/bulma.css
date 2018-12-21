@@ -344,7 +344,7 @@ body {
 }
 
 a {
-  color: #3273dc;
+  color: #ffd152;
   cursor: pointer;
   text-decoration: none;
 }
@@ -354,11 +354,11 @@ a strong {
 }
 
 a:hover {
-  color: #363636;
+  color: #f9c22c;
 }
 
 code {
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   color: #ff3860;
   font-size: 0.875em;
   font-weight: normal;
@@ -393,14 +393,14 @@ span {
 }
 
 strong {
-  color: #363636;
+  color: #78b0a0;
   font-weight: 700;
 }
 
 pre {
   -webkit-overflow-scrolling: touch;
-  background-color: whitesmoke;
-  color: #4a4a4a;
+  background-color: #efeae1;
+  color: #574c4f;
   font-size: 0.875em;
   overflow-x: auto;
   padding: 1.25rem 1.5rem;
@@ -2721,7 +2721,7 @@ a.box:active {
 .content h4,
 .content h5,
 .content h6 {
-  color: #363636;
+  color: rgb(239, 218, 185);
   font-weight: 600;
   line-height: 1.125;
 }
@@ -5136,7 +5136,7 @@ a.tag:hover {
   margin-top: -0.75rem;
 }
 
-.title:not(.is-spaced) + .subtitle {
+.title:not(.is-spaced) {
   margin-top: -1.25rem;
 }
 
@@ -5169,7 +5169,7 @@ a.tag:hover {
 }
 
 .subtitle {
-  color: #4a4a4a;
+  color: rgb(239, 218, 185);
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.25;
@@ -5339,23 +5339,30 @@ a.tag:hover {
 }
 
 .card {
-  background-color: white;
+  /* background-color: transparent;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-  color: #4a4a4a;
+  color: #4a4a4a; */
+  background-color: #efeae1;
+  color: #574c4f;
   max-width: 100%;
   position: relative;
 }
 
+.card:hover {
+  color: #efeae1;
+  background-color: rgb(88, 75, 79, 0.75);
+}
+
 .card-header {
-  background-color: transparent;
   align-items: stretch;
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+  /* border-style: solid;
+  border-color: rgb(239, 218, 185);
+  border-width: 0px 2px 2px 2px; */
   display: flex;
 }
 
 .card-header-title {
   align-items: center;
-  color: #363636;
   display: flex;
   flex-grow: 1;
   font-weight: 700;
@@ -10292,18 +10299,57 @@ label.panel-block:hover {
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: #b5b5b5;
-  padding: 1.5rem 1.5rem 1.5rem;
-  color: white;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  background-color: #efeae1;
+  color: #574c4f;
 }
 
 /*# sourceMappingURL=bulma.css.map */
 
+.footer a {
+  color: inherit;
+}
+
 .main {
   min-height: 100%;
   position: relative;
+  background-color: #152127;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23272629'/%3E%3Cstop offset='1' stop-color='%23272629' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23272d28'/%3E%3Cstop offset='1' stop-color='%23272d28' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2339322a'/%3E%3Cstop offset='1' stop-color='%2339322a' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23152127'/%3E%3Cstop offset='1' stop-color='%23152127' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23392a2a'/%3E%3Cstop offset='1' stop-color='%23392a2a' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23393929'/%3E%3Cstop offset='1' stop-color='%23393929' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  color: #efeae1;
+}
+
+.header {
+  background-color: rgb(88, 75, 79, 0.75);
+  color: #efeae1;
+  padding: 0;
 }
 
 .header.has-shadow {
   box-shadow: 0 2px 0 0 whitesmoke;
+}
+
+.header a {
+  color: #efeae1;
+}
+
+.header-title {
+  text-transform: uppercase;
+  letter-spacing: 0.8em;
+  font-size: 1.25rem
+}
+
+@media screen and (min-width: 769px), print {
+  .header-title {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
