@@ -10,8 +10,6 @@ categories: []
 
 ![kingdom hearts 2 multiplayer hack](img/KH2-Multiplayer.png)
 
-## About
-
 This is a multiplayer hack for the PAL version of Kingdom Hearts II (KH2). It allows 2 playable* characters to be controlled by separate controllers. You can find the code and installation instructions over at [KH-Vids](https://kh-vids.net/threads/kingdom-hearts-ii-multiplayer-hack.154198/).
 
 _\* Playable meaning any character than can be controlled during the game **except** for Riku._
