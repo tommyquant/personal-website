@@ -1,9 +1,0 @@
-baseURL = "/"
-languageCode = "en-us"
-title = "Magical Space Brigade"
-
-disableKinds = ["section", "taxonomy", "taxonomyTerm", "RSS"]
-
-[taxonomies]
-  category = "categories"
-  tag = "tags"

@@ -1,19 +1,4 @@
-## Commands
+## Tech stack
 
-Test on local server:
-
-```
-hugo server
-```
-
-Generate website:
-
-```
-hugo
-```
-
-Deploy to Firebase:
-
-```
-firebase deploy
-```
+ - Sanity (headless CMS)
+ - React/Gatsby
