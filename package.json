@@ -1,0 +1,19 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "package.json",
+  "scripts": {
+    "test": "echo 'Hello World!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommyquant/personal-website.git"
+  },
+  "author": "Tommy Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tommyquant/personal-website/issues"
+  },
+  "homepage": "https://github.com/tommyquant/personal-website#readme"
+}
