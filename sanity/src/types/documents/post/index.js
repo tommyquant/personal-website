@@ -52,16 +52,12 @@ export default {
     preview: {
         select: {
             title: 'title',
-            date_posted: 'date_posted',
+            datePosted: 'date_posted',
             media: 'feature_image'
         },
-        prepare: (selection) => {
-            const {date_posted, ...rest} = selection;
-
-            return {
-                ...rest,
-                subtitle: new Date(date_posted).toDateString()
-            };
-        }
+        prepare: ({datePosted, ...rest}) => ({
+            ...rest,
+            subtitle: new Date(datePosted).toDateString()
+        })
     }
 };
