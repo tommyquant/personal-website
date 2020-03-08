@@ -18,9 +18,6 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "indent": ["error", 4, {"SwitchCase": 1}],
         "linebreak-style": [
