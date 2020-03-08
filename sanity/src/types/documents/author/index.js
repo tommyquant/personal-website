@@ -17,5 +17,14 @@ export default {
             type: 'string',
             validation: Rule => Rule.required()
         }
-    ]
+    ],
+    preview: {
+        select: {
+            firstName: 'first_name',
+            lastName: 'last_name',
+        },
+        prepare: ({firstName, lastName}) => ({
+            title: `${firstName} ${lastName}`
+        })
+    }
 };
