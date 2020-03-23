@@ -23,7 +23,7 @@ export default {
             firstName: 'first_name',
             lastName: 'last_name',
         },
-        prepare: ({firstName, lastName}) => ({
+        prepare: ({ firstName, lastName }) => ({
             title: `${firstName} ${lastName}`
         })
     }
