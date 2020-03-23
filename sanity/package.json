@@ -7,7 +7,7 @@
   "author": "Tommy Quant <tommyquant@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
+    "watch": "sanity start",
     "test": "sanity check"
   },
   "keywords": [
