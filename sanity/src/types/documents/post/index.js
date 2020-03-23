@@ -1,5 +1,5 @@
 import { reference as authorRef } from '../author';
-import { reference as youtubeRef} from '../../objects/youtube';
+import { reference as youtubeRef } from '../../objects/youtube';
 
 export const reference = 'post';
 
