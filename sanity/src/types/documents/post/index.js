@@ -1,4 +1,5 @@
 import { reference as authorRef } from '../author';
+import { reference as youtubeRef} from '../../objects/youtube';
 
 export const reference = 'post';
 
@@ -53,7 +54,7 @@ export default {
                     type: 'image'
                 },
                 {
-                    type: 'youtube'
+                    type: youtubeRef
                 }
             ]
         }
@@ -64,7 +65,7 @@ export default {
             datePosted: 'date_posted',
             media: 'feature_image'
         },
-        prepare: ({datePosted, ...rest}) => ({
+        prepare: ({ datePosted, ...rest }) => ({
             ...rest,
             subtitle: new Date(datePosted).toDateString()
         })
