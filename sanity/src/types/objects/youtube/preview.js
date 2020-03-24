@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getYouTubeId from 'get-youtube-id';
 import YouTube from 'react-youtube';
 
 const Preview = ({ value }) => {
-    const { url } = value;
-    const id = getYouTubeId(url);
-    return (<YouTube videoId={id} />);
+    const { video_id } = value;
+    return (<YouTube videoId={video_id} />);
 };
 
 Preview.propTypes = {
     value: PropTypes.shape({
-        url: PropTypes.string.isRequired
+        video_id: PropTypes.string.isRequired
     })
 };
 
