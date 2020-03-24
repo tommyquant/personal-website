@@ -7,6 +7,12 @@ import {Link} from 'gatsby';
 const Image = styled.img`
     display: block;
     width: 200px;
+    filter: sepia(1);
+    transition: filter 0.1s;
+
+    &:hover {
+        filter: sepia(0);
+    }
 `;
 
 const query = gql`
