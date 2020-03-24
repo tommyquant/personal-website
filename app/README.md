@@ -1,0 +1,1 @@
+[Set Up Environment Variables](https://www.gatsbyjs.org/packages/gatsby-source-sanity/#using-env-variables)
