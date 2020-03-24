@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
+import {ApolloProvider} from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
 
@@ -9,7 +9,7 @@ const client = new ApolloClient({
 });
 
 // eslint-disable-next-line react/prop-types
-const RootElementWrapper = ({ element }) => (
+const RootElementWrapper = ({element}) => (
     <ApolloProvider client={client}>
         {element}
     </ApolloProvider>
