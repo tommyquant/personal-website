@@ -9,14 +9,14 @@ export default {
     type: 'object',
     fields: [
         {
-            title: 'YouTube video URL',
-            name: 'url',
-            type: 'url'
+            title: 'YouTube video ID',
+            name: 'video_id',
+            type: 'string'
         }
     ],
     preview: {
         select: {
-            url: 'url'
+            video_id: 'video_id'
         },
         component: Preview
     }
