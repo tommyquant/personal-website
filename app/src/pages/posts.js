@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router} from '@reach/router';
 
-import Post from '../templates/post';
+import Post from '../widgets/post';
 
 const Posts = () => {
     return (
