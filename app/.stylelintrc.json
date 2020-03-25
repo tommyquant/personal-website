@@ -3,6 +3,8 @@
 		"stylelint-order"
 	],
 	"rules": {
+		"color-named": "never",
+		"color-no-hex": true,
 		"order/order": [
 			"custom-properties",
 			"declarations"

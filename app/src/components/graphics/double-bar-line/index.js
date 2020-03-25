@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import {fuscousGray} from '../../../common/palette';
+
 const Graphic = styled.div`
     display: flex;
     height: 100%;
@@ -25,7 +27,7 @@ const Graphic = styled.div`
 
 const DoubleBarLine = ({
     className,
-    color = '#4e4b42'
+    color = fuscousGray
 }) => (
     <Graphic className={className} color={color}/>
 );
