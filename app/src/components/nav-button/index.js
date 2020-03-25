@@ -9,9 +9,10 @@ const Overlay = styled.div`
     background-color: ${fuscousGray};
     height: 100%;
     left: 0;
+    opacity: 0;
     position: absolute;
     top: 0;
-    transition: ${transition('background-color', 'width')};
+    transition: ${transition('background-color', 'opacity', 'width')};
     width: 0;
 `;
 
@@ -19,6 +20,7 @@ const hoverStyles = css`
     color: ${pageBg};
 
     ${Overlay} {
+        opacity: 1;
         width: 100%;
     }
 `;
@@ -98,7 +100,7 @@ const StyledButton = styled.button`
     border: 0;
     display: flex;
     font-size: 1.5rem;
-    height: 2.25em;
+    /* height: 2.25em; */
     letter-spacing: 0.05em;
     min-width: 8em;
     padding: 0;
