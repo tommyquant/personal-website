@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 const Graphic = styled.div`
     display: flex;
+    height: 100%;
     justify-content: space-between;
     width: 1.2em;
-    height: 100%;
 
     &::before {
         background-color: ${({color}) => color};

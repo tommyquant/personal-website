@@ -19,9 +19,9 @@ const PostTitle = styled.h1`
 `;
 
 const StyledCard = styled(Card)`
-    padding: 1.5em;
     margin: 0 auto;
     max-width: 768px;
+    padding: 1.5em;
 `;
 
 const Content = styled.div`
