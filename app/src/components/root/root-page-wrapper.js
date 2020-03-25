@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import DoubleBarLine from '../graphics/double-bar-line';
 import NavButton from '../nav-button';
 
 const NavTop = styled.div`
@@ -25,6 +26,7 @@ const RootPageWrapper = ({element}) => (
         <nav>
             <NavTop>
                 <NavButtons>
+                    <DoubleBarLine />
                     <NavButton isActive={true}>Home</NavButton>
                     <NavButton>Projects</NavButton>
                     <NavButton>About</NavButton>
