@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import DoubleBarLine from '../graphics/double-bar-line';
-import NavButton from '../nav-button';
+import DoubleBarLine from '../../components/graphics/double-bar-line';
+import NavButton from '../../components/nav-button';
 
 const NavTop = styled.div`
     border-bottom: 2px solid #454138;
