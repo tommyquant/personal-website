@@ -7,6 +7,8 @@ import {createGlobalStyle} from 'styled-components';
 import styledNormalize from 'styled-normalize';
 import 'typeface-roboto';
 
+import {accent, copy, pageBg} from '../../common/palette';
+
 const client = new ApolloClient({
     uri: `https://${process.env.SANITY_PROJECT_ID}.apicdn.sanity.io/v1/graphql/${process.env.SANITY_DATASET}/default`,
     fetch // Use the same fetch API for SSR and browser
@@ -20,19 +22,19 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: #cdc8b0;
+        background-color: ${pageBg};
         margin: 0;
         padding: 0;
     }
     
     /* Some elements must have their font explicitly defined */
     html, body, button, input, textarea, textfield, select {
-        color: #4e4b42;
+        color: ${copy};
         font-family: 'Roboto', Arial, Helvetica, sans-serif;
     }
 
     a {
-        color: #cd664d;
+        color: ${accent};
         text-decoration: none;
         
         &:focus,

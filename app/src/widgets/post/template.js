@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
+import {rgba} from 'polished';
 
+import {fuscousGray, taupeGray} from '../../common/palette';
 import DoubleBarLine from '../../components/graphics/double-bar-line';
+import Card from '../../components/card';
 
 import Image from './components/image';
-import Card from '../../components/card';
 import serializers from './serializers';
 
 const PostTitle = styled.h1`
@@ -14,7 +16,7 @@ const PostTitle = styled.h1`
     font-weight: normal;
     letter-spacing: 0.1em;
     margin-bottom: 1em;
-    text-shadow: 0.2em 0.2em 0 rgba(0, 0, 0, 0.15);
+    text-shadow: 0.15em 0.15em 0 ${rgba(fuscousGray, 0.25)};
     text-transform: uppercase;
 `;
 
@@ -44,7 +46,7 @@ const PostTemplate = ({
         <React.Fragment>
             <PostTitle>{title}</PostTitle>
             <Content>
-                <StyledDoubleBarLine color='#b4af9a' />
+                <StyledDoubleBarLine color={taupeGray} />
                 <StyledCard hasShadow={true}>
                     <h2>{new Date(date_posted).toDateString()}</h2>
                     <Image src={featureImageUrl} />
