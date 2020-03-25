@@ -4,11 +4,20 @@ import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
 
 import Image from './components/image';
+import Card from '../../components/card';
 import serializers from './serializers';
 
-const Wrapper = styled.div`
+const StyledCard = styled(Card)`
+    padding: 1.5em;
     margin: 0 auto;
     max-width: 768px;
+`;
+
+const PostTitle = styled.h1`
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    text-shadow: 0.2em 0.2em 0 rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
 `;
 
 const PostTemplate = ({
@@ -18,12 +27,14 @@ const PostTemplate = ({
     bodyRaw
 }) => {
     return (
-        <Wrapper>
-            <h1>{title}</h1>
-            <subtitle>{new Date(date_posted).toDateString()}</subtitle>
-            <Image src={featureImageUrl} />
-            <BlockContent blocks={bodyRaw} serializers={serializers} />
-        </Wrapper>
+        <React.Fragment>
+            <PostTitle>{title}</PostTitle>
+            <StyledCard hasShadow={true}>
+                <h2>{new Date(date_posted).toDateString()}</h2>
+                <Image src={featureImageUrl} />
+                <BlockContent blocks={bodyRaw} serializers={serializers} />
+            </StyledCard>
+        </React.Fragment>
     );
 };
 
