@@ -1,5 +1,5 @@
-import RootElementWrapper from './src/components/root/root-element-wrapper';
-import RootPageWrapper from './src/components/root/root-page-wrapper';
+import RootElementWrapper from './src/widgets/root/root-element-wrapper';
+import RootPageWrapper from './src/widgets/root/root-page-wrapper';
 
 export const wrapRootElement = RootElementWrapper;
 
