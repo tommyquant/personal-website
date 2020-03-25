@@ -87,10 +87,6 @@ const ViewableArea = styled.span`
 `;
 
 const Content = styled.div`
-    display: flex;
-    font-stretch: extra-condensed;
-    height: 100%;
-    width: 100%;
     z-index: 1;
 `;
 
