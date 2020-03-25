@@ -31,6 +31,16 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', Arial, Helvetica, sans-serif;
     }
 
+    a {
+        color: #cd664d;
+        text-decoration: none;
+        
+        &:focus,
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     p, li {
         line-height: 1.8em;
     }
