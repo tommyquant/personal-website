@@ -11,8 +11,8 @@ const NavTop = styled.div`
 
 const NavButtons = styled.div`
     display: grid;
-    grid-auto-flow: column;
     grid-auto-columns: max-content;
+    grid-auto-flow: column;
     grid-gap: 3em;
     padding: 2em 2em 0;
 `;

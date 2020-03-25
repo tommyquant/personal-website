@@ -91,8 +91,8 @@ const Content = styled.div`
 `;
 
 const StyledButton = styled.button`
-    appearance: none;
     align-items: flex-start;
+    appearance: none;
     background-color: transparent;
     border: 0;
     display: flex;

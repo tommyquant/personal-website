@@ -4,11 +4,13 @@ import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 import {Link} from 'gatsby';
 
+import transition from '../common/transition';
+
 const Image = styled.img`
     display: block;
-    width: 200px;
     filter: sepia(1);
-    transition: filter 0.1s;
+    transition: ${transition('filter')};
+    width: 200px;
 
     &:hover {
         filter: sepia(0);
