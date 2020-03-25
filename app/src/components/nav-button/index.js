@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
+import {athsSpecial, fuscousGray, pageBg, taupeGray} from '../../common/palette';
 import transition from '../../common/transition';
 
 const Overlay = styled.div`
-    background-color: #4e4b42;
+    background-color: ${fuscousGray};
     height: 100%;
     left: 0;
     position: absolute;
@@ -15,7 +16,7 @@ const Overlay = styled.div`
 `;
 
 const hoverStyles = css`
-    color: #dad4bb;
+    color: ${pageBg};
 
     ${Overlay} {
         width: 100%;
@@ -23,7 +24,7 @@ const hoverStyles = css`
 `;
 
 const hoverBarStyles = css`
-    background-color: #4e4b42;
+    background-color: ${fuscousGray};
     content: '';
     height: 2px;
     left: 0;
@@ -35,7 +36,7 @@ const hoverBarStyles = css`
 `;
 
 const ViewableArea = styled.span`
-    background-color: #b4af9a;
+    background-color: ${taupeGray};
     display: flex;
     height: 1.6em;
     padding: 0.2em 0.6em;
@@ -49,10 +50,10 @@ const ViewableArea = styled.span`
 
         &:focus,
         &:hover {
-            color: #454138;
+            color: ${fuscousGray};
 
             ${Overlay} {
-                background-color: #dad4bb;
+                background-color: ${athsSpecial};
             }
         }
     ` : css`

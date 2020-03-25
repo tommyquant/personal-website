@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import {fuscousGray} from '../../common/palette';
 import DoubleBarLine from '../../components/graphics/double-bar-line';
 import NavButton from '../../components/nav-button';
 
 const NavTop = styled.div`
-    border-bottom: 2px solid #454138;
+    border-bottom: 2px solid ${fuscousGray};
 `;
 
 const NavButtons = styled.div`
