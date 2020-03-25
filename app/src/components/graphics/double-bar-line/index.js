@@ -8,7 +8,7 @@ const Graphic = styled.div`
     display: flex;
     height: 100%;
     justify-content: space-between;
-    width: 1.2em;
+    width: 1.3em;
 
     &::before {
         background-color: ${({color}) => color};
@@ -21,7 +21,7 @@ const Graphic = styled.div`
         background-color: ${({color}) => color};
         content: '';
         height: 100%;
-        width: 10%;
+        width: 15%;
     }
 `;
 
