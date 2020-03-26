@@ -9,7 +9,7 @@ export default {
 };
 
 export const button = () => (
-    <Button isActive={boolean('Is active?', false)}>
+    <Button active={boolean('Is active?', false)}>
         {text('Text', 'Button')}
     </Button>
 );

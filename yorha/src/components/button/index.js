@@ -5,14 +5,16 @@ import styled, {css} from 'styled-components';
 import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
+const BAR_OFFSET_EM = '0.22';
+
 const Overlay = styled.div`
     background-color: ${fuscousGray};
-    height: 100%;
+    bottom: 0;
     left: 0;
     opacity: 0;
     position: absolute;
     top: 0;
-    transition: ${transition('background-color', 'opacity', 'width')};
+    transition: ${transition('background-color', 'bottom', 'opacity', 'top', 'width')};
     width: 0;
 `;
 
@@ -23,9 +25,45 @@ const hoverStyles = css`
         opacity: 1;
         width: 100%;
     }
+
+    &::before,
+    &::after {
+        opacity: 1;
+    }
+
+    &::before {
+        top: -${BAR_OFFSET_EM}em;
+    }
+
+    &::after {
+        bottom: -${BAR_OFFSET_EM}em;
+    }
 `;
 
-const hoverBarStyles = css`
+const activeStyles = css`
+    ${hoverStyles}
+
+    ${Overlay} {
+        bottom: -${BAR_OFFSET_EM}em;
+        top: -${BAR_OFFSET_EM}em;
+    }
+
+    &::before,
+    &::after {
+        opacity: 0;
+    }
+
+    &:focus,
+    &:hover {
+        color: ${fuscousGray};
+
+        ${Overlay} {
+            background-color: ${athsSpecial};
+        }
+    }
+`;
+
+const hoverBarBaseStyles = css`
     background-color: ${fuscousGray};
     content: '';
     height: 2px;
@@ -37,53 +75,40 @@ const hoverBarStyles = css`
     width: 100%;
 `;
 
-const ViewableArea = styled.span`
+const StyledButton = styled.button`
+    align-items: center;
     background-color: ${taupeGray};
+    border: 0;
+    box-sizing: border-box;
     display: flex;
-    height: 1.6em;
-    padding: 0.2em 0.6em;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    min-width: 8em;
+    padding: 0.2em 0.3em;
     position: relative;
-    transition: ${transition('color', 'height')};
-    width: 100%;
+    text-transform: uppercase;
 
-    ${({isActive}) => isActive ? css`
-        ${hoverStyles}
-        height: 100%;
+    &:active {
+        ${activeStyles}
+    }
 
-        &:focus,
-        &:hover {
-            color: ${fuscousGray};
-
-            ${Overlay} {
-                background-color: ${athsSpecial};
-            }
-        }
+    ${({active}) => active ? css`
+        ${activeStyles}
     ` : css`
-        &::before {
-            ${hoverBarStyles}
-            top: 0;
-        }
-
-        &::after {
-            ${hoverBarStyles}
-            bottom: 0;
-        }
-
-        &:focus,
-        &:hover {
-            ${hoverStyles}
-
-            &::before,
-            &::after {
-                opacity: 1;
-            }
-
+        &:not(:active) {
             &::before {
-                top: -5px;
+                ${hoverBarBaseStyles}
+                top: 0;
             }
 
             &::after {
-                bottom: -5px;
+                ${hoverBarBaseStyles}
+                bottom: 0;
+            }
+
+            &:focus,
+            &:hover {
+                ${hoverStyles}
             }
         }
     `}
@@ -93,41 +118,32 @@ const Content = styled.div`
     z-index: 1;
 `;
 
-const StyledButton = styled.button`
-    align-items: flex-start;
-    appearance: none;
-    background-color: transparent;
-    border: 0;
-    display: flex;
-    font-size: 1.5rem;
-    /* height: 2.25em; */
-    letter-spacing: 0.05em;
-    min-width: 8em;
-    padding: 0;
-    text-transform: uppercase;
-`;
-
 // eslint-disable-next-line react/display-name
-const NavButton = React.forwardRef(({
+const Button = React.forwardRef(({
     children,
-    isActive,
+    active,
     ...htmlAttributes
 }, ref) => {
     return (
-        <StyledButton ref={ref} {...htmlAttributes}>
-            <ViewableArea isActive={isActive}>
-                <Overlay />
-                <Content>
-                    {children}
-                </Content>
-            </ViewableArea>
+        <StyledButton
+            ref={ref}
+            active={active}
+            type="button"
+            {...htmlAttributes}
+        >
+            <Overlay />
+            <Content>
+                {children}
+            </Content>
         </StyledButton>
     );
 });
 
-NavButton.propTypes = {
+Button.propTypes = {
     children: PropTypes.node,
-    isActive: PropTypes.bool
+    active: PropTypes.bool
 };
 
-export default NavButton;
+Button.displayName = 'Button';
+
+export default Button;
