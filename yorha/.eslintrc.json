@@ -47,6 +47,10 @@
         "eol-last": [
             "error",
             "always"
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-double"
         ]
     }
 }

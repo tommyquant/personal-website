@@ -19,7 +19,7 @@ export default {
 };
 
 export const card = () => (
-    <StyledCard hasShadow={boolean('Has shadow?', true)}>
+    <StyledCard shadow={boolean('Has shadow?', true)}>
         I am a styled card
     </StyledCard>
 );
