@@ -4,7 +4,7 @@ import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 import {Link} from 'gatsby';
 
-import transition from '../common/transition';
+import transition from '../common/style/transition';
 
 const Image = styled.img`
     display: block;

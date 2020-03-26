@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {fuscousGray} from '../../../common/palette';
+import {fuscousGray} from '../../../common/style/palette';
 
 const Graphic = styled.div`
     display: flex;
