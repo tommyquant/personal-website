@@ -8,7 +8,7 @@ import {tana, fuscousGray} from '../../common/style/palette';
 const Wrapper = styled.div`
     background-color: ${tana};
 
-    ${({hasShadow}) => hasShadow && css`
+    ${({shadow}) => shadow && css`
         box-shadow: 3px 3px 0 0 ${rgba(fuscousGray, 0.5)};
     `}
 `;
@@ -16,9 +16,9 @@ const Wrapper = styled.div`
 const Card = ({
     children,
     className,
-    hasShadow,
+    shadow,
 }) => (
-    <Wrapper className={className} hasShadow={!!hasShadow}>
+    <Wrapper className={className} shadow={!!shadow}>
         {children}
     </Wrapper>
 );
@@ -26,7 +26,7 @@ const Card = ({
 Card.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    hasShadow: PropTypes.bool
+    shadow: PropTypes.bool
 };
 
 export default Card;

@@ -5,8 +5,8 @@ import Post from '../widgets/post';
 
 const Posts = () => {
     return (
-        <Router basepath='/posts'>
-            <Post path='/:slug' />
+        <Router basepath="/posts">
+            <Post path="/:slug" />
         </Router>
     );
 };
