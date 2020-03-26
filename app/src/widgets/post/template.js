@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
 import {rgba} from 'polished';
 
-import {fuscousGray, taupeGray} from '../../common/style/palette';
-import DoubleBarLine from '../../components/graphics/double-bar-line';
-import Card from '../../components/card';
+import {fuscousGray, taupeGray} from 'yorha/src/common/style/palette';
+import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
+import Card from 'yorha/src/components/card';
 
 import Image from './components/image';
 import serializers from './serializers';

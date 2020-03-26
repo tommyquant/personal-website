@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const path = require('path');
+
 require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
 });
@@ -20,5 +22,17 @@ module.exports = {
             resolve: 'gatsby-plugin-create-client-paths',
             options: {prefixes: ['/posts/*']},
         },
+        {
+            resolve: 'gatsby-plugin-alias-imports',
+            options: {
+                // When installing local packages (such as yorha), the app will
+                // error because we have two installations of React. This alias
+                // makes sure we only use the 'react' package from this package.
+                alias: {
+                    react: path.resolve('./node_modules/react')
+                },
+                extensions: []
+            }
+        }
     ]
 };

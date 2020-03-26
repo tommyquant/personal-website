@@ -12,13 +12,3 @@ export const indianKhaki = '#c0b496';
 export const mongoose = '#bc9d83';
 export const makara = '#8b7e67';
 export const chestnutRose = '#cd664d';
-
-/** The color names aren't very semantic so you can also use the names below which describe their usage better */
-export const copy = fuscousGray;
-export const shadow = fuscousGray;
-export const cardBg = tana;
-export const pageBg = softAmber;
-
-export const info = hampton;
-export const warning = mongoose;
-export const accent = chestnutRose;
