@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
-import {athsSpecial, fuscousGray, pageBg, taupeGray} from '../../common/palette';
-import transition from '../../common/transition';
+import {athsSpecial, fuscousGray, pageBg, taupeGray} from '../../common/style/palette';
+import transition from '../../common/style/transition';
 
 const Overlay = styled.div`
     background-color: ${fuscousGray};

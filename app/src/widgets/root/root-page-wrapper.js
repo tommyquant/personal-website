@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {fuscousGray} from '../../common/palette';
+import {fuscousGray, taupeGray} from '../../common/style/palette';
 import {
     PAGE_HORIZONTAL_EDGE_SPACING,
     PAGE_VERTICAL_EDGE_SPACING
-} from '../../common/style-constants';
+} from '../../common/style/constants';
 import DoubleBarLine from '../../components/graphics/double-bar-line';
 import NavButton from '../../components/nav-button';
 
@@ -31,7 +31,7 @@ const RootPageWrapper = ({element}) => (
         <nav>
             <NavTop>
                 <NavButtons>
-                    <DoubleBarLine />
+                    <DoubleBarLine color={taupeGray} />
                     <NavButton isActive={true}>Home</NavButton>
                     <NavButton>Projects</NavButton>
                     <NavButton>About</NavButton>

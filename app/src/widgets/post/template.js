@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
 import {rgba} from 'polished';
 
-import {fuscousGray, taupeGray} from '../../common/palette';
+import {fuscousGray, taupeGray} from '../../common/style/palette';
 import DoubleBarLine from '../../components/graphics/double-bar-line';
 import Card from '../../components/card';
 
