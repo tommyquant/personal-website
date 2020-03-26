@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {fuscousGray, taupeGray} from '../../common/style/palette';
+import {fuscousGray, taupeGray} from 'yorha/src/common/style/palette';
+import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
+import Button from 'yorha/src/components/button';
+
 import {
     PAGE_HORIZONTAL_EDGE_SPACING,
     PAGE_VERTICAL_EDGE_SPACING
 } from '../../common/style/constants';
-import DoubleBarLine from '../../components/graphics/double-bar-line';
-import NavButton from '../../components/nav-button';
 
 const NavTop = styled.div`
     border-bottom: 2px solid ${fuscousGray};
@@ -32,9 +33,9 @@ const RootPageWrapper = ({element}) => (
             <NavTop>
                 <NavButtons>
                     <DoubleBarLine color={taupeGray} />
-                    <NavButton isActive={true}>Home</NavButton>
-                    <NavButton>Projects</NavButton>
-                    <NavButton>About</NavButton>
+                    <Button isActive={true}>Home</Button>
+                    <Button>Projects</Button>
+                    <Button>About</Button>
                 </NavButtons>
             </NavTop>
         </nav>

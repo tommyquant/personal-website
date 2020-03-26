@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 import {rgba} from 'polished';
 
-import {cardBg, shadow} from '../../common/style/palette';
+import {tana, fuscousGray} from '../../common/style/palette';
 
 const Wrapper = styled.div`
-    background-color: ${cardBg};
+    background-color: ${tana};
 
     ${({hasShadow}) => hasShadow && css`
-        box-shadow: 3px 3px 0 0 ${rgba(shadow, 0.5)};
+        box-shadow: 3px 3px 0 0 ${rgba(fuscousGray, 0.5)};
     `}
 `;
 

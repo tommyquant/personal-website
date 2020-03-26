@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
-import {athsSpecial, fuscousGray, pageBg, taupeGray} from '../../common/style/palette';
+import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
 const Overlay = styled.div`
@@ -17,7 +17,7 @@ const Overlay = styled.div`
 `;
 
 const hoverStyles = css`
-    color: ${pageBg};
+    color: ${softAmber};
 
     ${Overlay} {
         opacity: 1;
