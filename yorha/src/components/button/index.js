@@ -118,7 +118,7 @@ const StyledButton = styled.button.attrs(() => ({
     ${nonInteractiveStyles}
     ${interactiveStyles}
     appearance: none;
-    outline: 0;
+    outline: none;
 `;
 
 const StyledLink = styled.a`
