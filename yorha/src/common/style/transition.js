@@ -1,7 +1,7 @@
-export const TRANSITION_SECONDS = 0.15;
+export const TRANSITION_SECONDS = 0.25;
 
 export default function transition(...properties) {
     return properties
-        .map((property) => `${property} ${TRANSITION_SECONDS}s ease-out`)
+        .map((property) => `${property} ${TRANSITION_SECONDS}s cubic-bezier(.15, 1, .6, 1)`)
         .join(', ');
 }
