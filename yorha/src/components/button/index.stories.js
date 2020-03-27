@@ -1,4 +1,5 @@
 import React from 'react';
+import {action} from '@storybook/addon-actions';
 import {withKnobs, boolean, text} from '@storybook/addon-knobs';
 
 import Button from '.';
@@ -9,7 +10,14 @@ export default {
 };
 
 export const button = () => (
-    <Button active={boolean('Is active?', false)}>
+    <Button
+        disabled={boolean('Is disabled?', false)}
+        href={text('Link to')}
+        onClick={action('Button clicked')}
+        active={boolean('Is active?', false)}
+        center={boolean('Is content centered?', false)}
+        fluid={boolean('Is full width?', false)}
+    >
         {text('Text', 'Button')}
     </Button>
 );

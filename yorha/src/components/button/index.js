@@ -2,91 +2,101 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
+import {fontFamily} from '../../common/style/font';
 import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
 const BAR_OFFSET_EM = '0.22';
 
-const Overlay = styled.div`
-    background-color: ${fuscousGray};
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: ${transition('background-color', 'bottom', 'opacity', 'top', 'width')};
-    width: 0;
-`;
-
-const hoverStyles = css`
+const activeStyles = css`
     color: ${softAmber};
 
-    ${Overlay} {
-        opacity: 1;
-        width: 100%;
-    }
-
-    &::before,
-    &::after {
-        opacity: 1;
-    }
-
     &::before {
-        top: -${BAR_OFFSET_EM}em;
-    }
-
-    &::after {
-        bottom: -${BAR_OFFSET_EM}em;
-    }
-`;
-
-const activeStyles = css`
-    ${hoverStyles}
-
-    ${Overlay} {
-        bottom: -${BAR_OFFSET_EM}em;
-        top: -${BAR_OFFSET_EM}em;
-    }
-
-    &::before,
-    &::after {
-        opacity: 0;
+        background-color: ${fuscousGray};
+        width: 100%;
     }
 
     &:focus,
     &:hover {
         color: ${fuscousGray};
 
-        ${Overlay} {
+        &::before {
             background-color: ${athsSpecial};
+        }
+
+        &::after {
+            border-color: ${athsSpecial};
         }
     }
 `;
 
-const hoverBarBaseStyles = css`
-    background-color: ${fuscousGray};
-    content: '';
-    height: 2px;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: ${transition('bottom', 'opacity', 'top')};
-    width: 100%;
-`;
-
-const StyledButton = styled.button`
-    align-items: center;
+const nonInteractiveStyles = css`
     background-color: ${taupeGray};
     border: 0;
     box-sizing: border-box;
+    color: ${fuscousGray};
     display: flex;
+    font-family: ${fontFamily};
     font-size: 1.5rem;
     letter-spacing: 0.05em;
-    min-width: 8em;
     padding: 0.2em 0.3em;
     position: relative;
     text-transform: uppercase;
+
+    ${({center}) => center && css`
+        justify-content: center;
+    `}
+
+    ${({fluid}) => fluid ? css`
+        width: 100%;
+    ` : css`
+        min-width: 8em;
+    `}
+`;
+
+const interactiveStyles = css`
+    transition: ${transition('color')};
+
+    /* Background */
+    &::before {
+        background-color: ${fuscousGray};
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: ${transition('background-color', 'bottom', 'top', 'width')};
+        width: 0;
+    }
+
+    /* Bars */
+    &::after {
+        border: 2px solid ${fuscousGray};
+        border-left: none;
+        border-right: none;
+        bottom: 0;
+        box-sizing: border-box;
+        content: '';
+        left: 0%;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: ${transition('bottom', 'opacity', 'top')};
+        width: 100%;
+    }
+
+    &:focus,
+    &:hover {
+        &::before {
+            width: 100%;
+        }
+
+        &::after {
+            bottom: -${BAR_OFFSET_EM}em;
+            opacity: 1;
+            top: -${BAR_OFFSET_EM}em;
+        }
+    }
 
     &:active {
         ${activeStyles}
@@ -95,53 +105,86 @@ const StyledButton = styled.button`
     ${({active}) => active ? css`
         ${activeStyles}
     ` : css`
-        &:not(:active) {
-            &::before {
-                ${hoverBarBaseStyles}
-                top: 0;
-            }
-
-            &::after {
-                ${hoverBarBaseStyles}
-                bottom: 0;
-            }
-
-            &:focus,
-            &:hover {
-                ${hoverStyles}
-            }
+        &:not(:active):focus,
+        &:not(:active):hover {
+            color: ${softAmber};
         }
     `}
 `;
 
-const Content = styled.div`
+const StyledButton = styled.button.attrs(() => ({
+    type: 'button'
+}))`
+    ${nonInteractiveStyles}
+    ${interactiveStyles}
+    appearance: none;
+    outline: 0;
+`;
+
+const StyledLink = styled.a`
+    ${nonInteractiveStyles}
+    ${interactiveStyles}
+    text-decoration: none;
+`;
+
+const DisabledElement = styled.div`
+    ${nonInteractiveStyles};
+    cursor: not-allowed;
+    opacity: 0.5;
+`;
+
+const Content = styled.span`
     z-index: 1;
 `;
 
 // eslint-disable-next-line react/display-name
 const Button = React.forwardRef(({
     children,
+    disabled,
+    href,
+    onClick,
+
     active,
+    center,
+    fluid,
     ...htmlAttributes
 }, ref) => {
+    let StyledElement;
+
+    if (disabled) {
+        StyledElement = DisabledElement;
+    } else if (href) {
+        StyledElement = StyledLink;
+    } else {
+        StyledElement = StyledButton;
+    }
+
     return (
-        <StyledButton
+        <StyledElement
             ref={ref}
+            href={!disabled && href}
+            onClick={!disabled && onClick}
             active={active}
-            type="button"
+            center={center}
+            fluid={fluid}
             {...htmlAttributes}
         >
-            <Overlay />
             <Content>
                 {children}
             </Content>
-        </StyledButton>
+        </StyledElement>
     );
 });
 
 Button.propTypes = {
     children: PropTypes.node,
-    active: PropTypes.bool
+    disabled: PropTypes.bool,
+    href: PropTypes.string,
+    onClick: PropTypes.func,
+    
+    active: PropTypes.bool,
+    center: PropTypes.bool,
+    fluid: PropTypes.bool
 };
 
 Button.displayName = 'Button';
