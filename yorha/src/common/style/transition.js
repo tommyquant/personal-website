@@ -1,4 +1,4 @@
-export const TRANSITION_SECONDS = 0.25;
+export const TRANSITION_SECONDS = 0.2;
 
 export default function transition(...properties) {
     return properties

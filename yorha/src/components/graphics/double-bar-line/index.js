@@ -27,9 +27,10 @@ const Graphic = styled.div`
 
 const DoubleBarLine = ({
     className,
-    color = fuscousGray
+    color = fuscousGray,
+    ...htmlAttributes
 }) => (
-    <Graphic className={className} color={color}/>
+    <Graphic className={className} color={color} {...htmlAttributes} />
 );
 
 DoubleBarLine.propTypes = {

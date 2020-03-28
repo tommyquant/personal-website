@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
-import {fontFamily} from '../../common/style/font';
+import {FONT_FAMILY} from '../../common/style/font';
 import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
@@ -36,12 +36,11 @@ const nonInteractiveStyles = css`
     box-sizing: border-box;
     color: ${fuscousGray};
     display: flex;
-    font-family: ${fontFamily};
+    font-family: ${FONT_FAMILY};
     font-size: 1.5rem;
     letter-spacing: 0.05em;
     padding: 0.2em 0.3em;
     position: relative;
-    text-transform: uppercase;
 
     ${({center}) => center && css`
         justify-content: center;
@@ -119,6 +118,7 @@ const StyledButton = styled.button.attrs(() => ({
     ${interactiveStyles}
     appearance: none;
     outline: none;
+    text-align: left;
 `;
 
 const StyledLink = styled.a`
@@ -140,6 +140,7 @@ const Content = styled.span`
 // eslint-disable-next-line react/display-name
 const Button = React.forwardRef(({
     children,
+    className,
     disabled,
     href,
     onClick,
@@ -161,6 +162,7 @@ const Button = React.forwardRef(({
 
     return (
         <StyledElement
+            className={className}
             ref={ref}
             href={!disabled && href}
             onClick={!disabled && onClick}
@@ -178,6 +180,7 @@ const Button = React.forwardRef(({
 
 Button.propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     disabled: PropTypes.bool,
     href: PropTypes.string,
     onClick: PropTypes.func,
