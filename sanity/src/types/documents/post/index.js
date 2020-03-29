@@ -1,5 +1,7 @@
-import { reference as authorRef } from '../author';
-import { reference as youtubeRef } from '../../objects/youtube';
+
+import {reference as youtubeRef} from '../../objects/youtube';
+import {reference as authorRef} from '../author';
+import categories from './categories';
 
 export const reference = 'post';
 
@@ -33,8 +35,26 @@ export default {
             title: 'Author',
             name: 'author',
             type: 'reference',
-            to: [{ type: authorRef }],
+            to: [{type: authorRef}],
             validation: (Rule) => Rule.required()
+        },
+        {
+            title: 'Category',
+            name: 'category',
+            type: 'string',
+            options: {
+                list: categories
+            },
+            validation: (Rule) => Rule.required()
+        },
+        {
+            title: 'Tags',
+            name: 'tags',
+            type: 'array',
+            of: [{type: 'string'}],
+            options: {
+                layout: 'tags'
+            }
         },
         {
             title: 'Feature Image',
@@ -71,7 +91,7 @@ export default {
             datePosted: 'date_posted',
             media: 'feature_image'
         },
-        prepare: ({ datePosted, ...rest }) => ({
+        prepare: ({datePosted, ...rest}) => ({
             ...rest,
             subtitle: new Date(datePosted).toDateString()
         })
