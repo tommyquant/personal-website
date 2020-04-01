@@ -13,6 +13,7 @@ import Image from './components/image';
 import serializers from './serializers';
 
 const PostTitle = styled.h1`
+    color: ${fuscousGray};
     font-family: ${fontFamily};
     font-size: 2.8rem;
     font-weight: normal;

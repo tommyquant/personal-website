@@ -6,6 +6,7 @@ import {softAmber, taupeGray} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
 import Button from 'yorha/src/components/button';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
+import Overlay from 'yorha/src/components/graphics/overlay';
 import PageDivider from 'yorha/src/components/graphics/page-divider';
 
 import {
@@ -13,13 +14,13 @@ import {
     PAGE_VERTICAL_EDGE_SPACING
 } from '../../common/style/constants';
 
-const BackgroundWrapper = styled.div`
+const FixedWrapper = styled.div`
     height: 100%;
     left: 0;
+    pointer-events: none;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: -1;
 `;
 
 const Navigation = styled.nav`
@@ -57,9 +58,12 @@ const Footer = styled.footer`
 
 const RootPageWrapper = ({element}) => (
     <main>
-        <BackgroundWrapper>
+        <FixedWrapper style={{zIndex: -1}}>
             <Background />
-        </BackgroundWrapper>
+        </FixedWrapper>
+        <FixedWrapper style={{zIndex: 100}}>
+            <Overlay />
+        </FixedWrapper>
 
         <Navigation>
             <NavButtons>
