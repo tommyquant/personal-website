@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 
-import {FONT_FAMILY} from '../../common/style/font';
+import {fontFamily} from '../../common/style/font';
 import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
@@ -36,7 +36,7 @@ const nonInteractiveStyles = css`
     box-sizing: border-box;
     color: ${fuscousGray};
     display: flex;
-    font-family: ${FONT_FAMILY};
+    font-family: ${fontFamily};
     font-size: 1.5rem;
     letter-spacing: 0.05em;
     padding: 0.2em 0.3em;

@@ -5,6 +5,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import {rgba} from 'polished';
 
 import {fuscousGray, taupeGray} from 'yorha/src/common/style/palette';
+import {fontFamily} from 'yorha/src/common/style/font';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 import Card from 'yorha/src/components/card';
 
@@ -12,6 +13,7 @@ import Image from './components/image';
 import serializers from './serializers';
 
 const PostTitle = styled.h1`
+    font-family: ${fontFamily};
     font-size: 2.8rem;
     font-weight: normal;
     letter-spacing: 0.1em;

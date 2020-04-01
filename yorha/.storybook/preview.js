@@ -1,6 +1,6 @@
 import React from 'react';
 import {addParameters, addDecorator} from '@storybook/react';
-import styled from 'styled-components';
+import {withKnobs, boolean} from '@storybook/addon-knobs';
 import {softAmber} from '../src/common/style/palette';
 
 addParameters({
@@ -9,18 +9,22 @@ addParameters({
     ],
 });
 
-const Wrapper = styled.div`
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    padding: 2em;
-    width: 100%;
-`;
+addDecorator(withKnobs);
 
-addDecorator((storyFn) => (
-    <Wrapper>
-        {storyFn()}
-    </Wrapper>
-));
+addDecorator((storyFn) => {
+    const globalGroupId = 'Global';
+
+    return (
+        <div style={{
+            alignItems: boolean('Center vertically', true, globalGroupId) && 'center',
+            boxSizing: 'border-box',
+            display: 'flex',
+            height: '100%',
+            justifyContent: boolean('Center horizontally', true, globalGroupId) && 'center',
+            padding: boolean('Padding', true, globalGroupId) && '2rem',
+            width: '100%'
+        }}>
+            {storyFn()}
+        </div>
+    );
+});
