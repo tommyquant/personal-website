@@ -1,12 +1,11 @@
 import React from 'react';
 import {action} from '@storybook/addon-actions';
-import {withKnobs, boolean, text} from '@storybook/addon-knobs';
+import {boolean, text} from '@storybook/addon-knobs';
 
 import Button from '.';
 
 export default {
-    title: 'Components',
-    decorators: [withKnobs]
+    title: 'Components'
 };
 
 export const button = () => (

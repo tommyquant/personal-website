@@ -3,14 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import {softAmber, taupeGray} from 'yorha/src/common/style/palette';
-import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
+import Background from 'yorha/src/components/graphics/background';
 import Button from 'yorha/src/components/button';
+import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 import PageDivider from 'yorha/src/components/graphics/page-divider';
 
 import {
     PAGE_HORIZONTAL_EDGE_SPACING,
     PAGE_VERTICAL_EDGE_SPACING
 } from '../../common/style/constants';
+
+const BackgroundWrapper = styled.div`
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+`;
 
 const Navigation = styled.nav`
     position: sticky;
@@ -33,7 +43,6 @@ const StyledButton = styled(Button)`
 
 const StyledPageDivider = styled(PageDivider)`
     box-sizing: border-box;
-    margin-bottom: 1.5rem;
     padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING};
 `;
 
@@ -41,8 +50,17 @@ const Content = styled.section`
     padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
 `;
 
+const Footer = styled.footer`
+    background-color: ${softAmber};
+    padding-bottom: 1.5rem;
+`;
+
 const RootPageWrapper = ({element}) => (
     <main>
+        <BackgroundWrapper>
+            <Background />
+        </BackgroundWrapper>
+
         <Navigation>
             <NavButtons>
                 <DoubleBarLine color={taupeGray} />
@@ -52,10 +70,14 @@ const RootPageWrapper = ({element}) => (
             </NavButtons>
             <StyledPageDivider />
         </Navigation>
+
         <Content>
             {element}
         </Content>
-        <StyledPageDivider />
+        
+        <Footer>
+            <StyledPageDivider />
+        </Footer>
     </main>
 );
 

@@ -1,3 +1,3 @@
 import 'typeface-roboto';
 
-export const FONT_FAMILY = '\'Roboto\', Arial, Helvetica, sans-serif';
+export const fontFamily = '\'Roboto\', Arial, Helvetica, sans-serif';

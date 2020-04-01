@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withKnobs, boolean} from '@storybook/addon-knobs';
+import {boolean} from '@storybook/addon-knobs';
 
 import Card from '.';
 
@@ -14,8 +14,7 @@ const StyledCard = styled(Card)`
 `;
 
 export default {
-    title: 'Components',
-    decorators: [withKnobs]
+    title: 'Components'
 };
 
 export const card = () => (
