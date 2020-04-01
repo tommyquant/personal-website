@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {readableColor} from 'polished';
 
-import {FONT_FAMILY} from './font';
+import {fontFamily} from './font';
 
 import * as colors from './palette';
 
@@ -23,7 +23,7 @@ const Color = styled.div`
     border: 2px solid ${({color}) => readableColor(color)};
     color: ${({color}) => readableColor(color)};
     display: flex;
-    font-family: ${FONT_FAMILY};
+    font-family: ${fontFamily};
     justify-content: center;
     text-align: center;
 `;

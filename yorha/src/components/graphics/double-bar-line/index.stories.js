@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withKnobs, color} from '@storybook/addon-knobs';
+import {color} from '@storybook/addon-knobs';
 
 import {taupeGray} from '../../../common/style/palette';
 import DoubleBarLine from '.';
@@ -10,8 +10,7 @@ const Wrapper = styled.div`
 `;
 
 export default {
-    title: 'Components/Graphics',
-    decorators: [withKnobs]
+    title: 'Components/Graphics'
 };
 
 export const doubleBarLine = () => (
