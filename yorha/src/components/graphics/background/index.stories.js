@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {color} from '@storybook/addon-knobs';
 
-import {fuscousGray} from '../../../common/style/palette';
-import PageDivider from '.';
+import {taupeGray} from '../../../common/style/palette';
+import Background from '.';
 
 const Wrapper = styled.div`
-    padding: 0 2rem;
+    height: 100vh;
     width: 100%;
 `;
 
@@ -14,8 +14,8 @@ export default {
     title: 'Components/Graphics'
 };
 
-export const pageDivider = () => (
+export const background = () => (
     <Wrapper>
-        <PageDivider color={color('Color', fuscousGray)} />
+        <Background color={color('Color', taupeGray)}/>
     </Wrapper>
 );
