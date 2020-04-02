@@ -13,8 +13,8 @@ const innerCircleScaleAnim = keyframes`
     }
     
     50% {
-        height: 97%;
-        width: 97%;
+        height: 98%;
+        width: 98%;
     }
     
     100% {

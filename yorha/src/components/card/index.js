@@ -3,15 +3,26 @@ import PropTypes from 'prop-types';
 import styled, {css} from 'styled-components';
 import {rgba} from 'polished';
 
-import {fontFamily} from '../../common/style/font';
 import {tana, fuscousGray} from '../../common/style/palette';
+import transition from '../../common/style/transition';
+
+const shadowStyles = css`
+    box-shadow: 3px 3px 0 0 ${rgba(fuscousGray, 0.5)};
+`;
 
 const Wrapper = styled.div`
     background-color: ${tana};
-    font-family: ${fontFamily};
+    transition: ${transition('box-shadow')};
 
-    ${({shadow}) => shadow && css`
-        box-shadow: 3px 3px 0 0 ${rgba(fuscousGray, 0.5)};
+    ${({shadow}) => shadow ? css`
+        ${shadowStyles}
+    ` : css`
+        ${({shadowWhenFocusHover}) => shadowWhenFocusHover && css`
+            &:focus,
+            &:hover {
+                ${shadowStyles}
+            }
+        `}
     `}
 `;
 
@@ -19,11 +30,13 @@ const Card = ({
     children,
     className,
     shadow,
+    shadowWhenFocusHover,
     ...htmlAttributes
 }) => (
     <Wrapper
         className={className}
-        shadow={!!shadow}
+        shadow={shadow}
+        shadowWhenFocusHover={shadowWhenFocusHover}
         {...htmlAttributes}
     >
         {children}
@@ -33,7 +46,8 @@ const Card = ({
 Card.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    shadow: PropTypes.bool
+    shadow: PropTypes.bool,
+    shadowWhenFocusHover: PropTypes.bool
 };
 
 export default Card;

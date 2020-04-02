@@ -13,6 +13,7 @@ const StyledSvg = styled.svg`
 const Overlay = ({
     className,
     color = rgba(fuscousGray, 0.05),
+    vignetteOpacity = 0.35,
     ...htmlAttributes
 }) => {
     return (
@@ -34,10 +35,10 @@ const Overlay = ({
                 </pattern>
 
                 <linearGradient id="vignette" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{stopColor: fuscousGray, stopOpacity: 0.2}} />
+                    <stop offset="0%" style={{stopColor: fuscousGray, stopOpacity: vignetteOpacity}} />
                     <stop offset="15%" style={{stopColor: fuscousGray, stopOpacity: 0}} />
                     <stop offset="85%" style={{stopColor: fuscousGray, stopOpacity: 0}} />
-                    <stop offset="100%" style={{stopColor: fuscousGray, stopOpacity: 0.2}} />
+                    <stop offset="100%" style={{stopColor: fuscousGray, stopOpacity: vignetteOpacity}} />
                 </linearGradient>
             </defs>
             
@@ -49,7 +50,8 @@ const Overlay = ({
 
 Overlay.propTypes = {
     className: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+    vignetteOpacity: PropTypes.number
 };
 
 export default Overlay;

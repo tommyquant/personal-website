@@ -25,11 +25,15 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-alias-imports',
             options: {
-                // When installing local packages (such as yorha), the app will
-                // error because we have two installations of React. This alias
-                // makes sure we only use the 'react' package from this package.
+                /**
+                 * When installing local packages (such as yorha), the app will
+                 * error because we have two installations of a package (like React).
+                 * These aliases make sure we only use the package from the current
+                 * node_modules.
+                 */
                 alias: {
-                    react: path.resolve('./node_modules/react')
+                    react: path.resolve('./node_modules/react'),
+                    'styled-components': path.resolve('./node_modules/styled-components')
                 },
                 extensions: []
             }

@@ -2,19 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
-import {Link} from 'gatsby';
+import {Link} from '@reach/router';
 
-import transition from 'yorha/src/common/style/transition';
+import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 
-const Image = styled.img`
-    display: block;
-    filter: sepia(1);
-    transition: ${transition('filter')};
-    width: 200px;
+import PostGrid from '../components/post-grid';
+import PostCard from '../components/post-card';
 
-    &:hover {
-        filter: sepia(0);
-    }
+const Container = styled.div`
+    align-content: center;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content;
+    width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
 `;
 
 const query = gql`
@@ -29,6 +34,7 @@ const query = gql`
                     url
                 }
             }
+            description
         }
     }
 `;
@@ -40,13 +46,31 @@ const Home = () => {
     if (error) return <p>Error :(</p>;
 
     return (
-        <div>
-            Hello! {!!data.allPost && data.allPost.map(({title, slug, feature_image}) => (
-                <Link key={title} to={`/posts/${slug.current}`}>
-                    <Image alt={title} src={feature_image.asset.url} />
-                </Link>
-            ))}
-        </div>
+        <Container>
+            <DoubleBarLine />
+
+            <PostGrid>
+                {!!data.allPost && data.allPost.map(({
+                    title,
+                    slug,
+                    feature_image,
+                    description
+                }) => (
+                    <PostCard
+                        key={slug.current}
+                        forwardedAs={StyledLink}
+                        to={`posts/${slug.current}`}
+                    >
+                        <PostCard.Header imgSrc={feature_image.asset.url}>
+                            {title}
+                        </PostCard.Header>
+                        <PostCard.Description>
+                            {description}
+                        </PostCard.Description>
+                    </PostCard>
+                ))}
+            </PostGrid>
+        </Container>
     );
 };
 
