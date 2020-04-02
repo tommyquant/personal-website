@@ -8,12 +8,6 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         background-color: ${softAmber};
-        margin: 0;
-        padding: 0;
-    }
-
-    p, li {
-        line-height: 1.8em;
     }
 `;
 
