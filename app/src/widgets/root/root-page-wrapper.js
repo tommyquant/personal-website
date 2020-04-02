@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {softAmber, taupeGray} from 'yorha/src/common/style/palette';
+import {softAmber} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
 import Button from 'yorha/src/components/button';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
@@ -14,6 +14,17 @@ import {
     PAGE_VERTICAL_EDGE_SPACING
 } from '../../common/style/constants';
 
+const StyledMain = styled.main`
+    display: grid;
+    grid-template-areas:
+        'header'
+        'content'
+        'footer';
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+`;
+
 const FixedWrapper = styled.div`
     height: 100%;
     left: 0;
@@ -23,13 +34,11 @@ const FixedWrapper = styled.div`
     width: 100%;
 `;
 
-const Navigation = styled.nav`
-    position: sticky;
-    top: 0;
-    z-index: 1;
+const StyledHeader = styled.header`
+    grid-area: header;
 `;
 
-const NavButtons = styled.div`
+const Navigation = styled.nav`
     background-color: ${softAmber};
     display: grid;
     grid-auto-columns: max-content;
@@ -43,21 +52,25 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledPageDivider = styled(PageDivider)`
-    box-sizing: border-box;
     padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING};
 `;
 
 const Content = styled.section`
-    padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
+    box-sizing: border-box;
+    display: flex;
+    grid-area: content;
+    padding: 2rem ${PAGE_HORIZONTAL_EDGE_SPACING};
+    width: 100%;
 `;
 
-const Footer = styled.footer`
+const StyledFooter = styled.footer`
     background-color: ${softAmber};
+    grid-area: footer;
     padding-bottom: 1.5rem;
 `;
 
 const RootPageWrapper = ({element}) => (
-    <main>
+    <StyledMain>
         <FixedWrapper style={{zIndex: -1}}>
             <Background />
         </FixedWrapper>
@@ -65,24 +78,24 @@ const RootPageWrapper = ({element}) => (
             <Overlay />
         </FixedWrapper>
 
-        <Navigation>
-            <NavButtons>
-                <DoubleBarLine color={taupeGray} />
+        <StyledHeader>
+            <Navigation>
+                <DoubleBarLine />
                 <StyledButton isActive={true}>Home</StyledButton>
-                <StyledButton>Projects</StyledButton>
                 <StyledButton>About</StyledButton>
-            </NavButtons>
+                <StyledButton>Settings</StyledButton>
+            </Navigation>
             <StyledPageDivider />
-        </Navigation>
+        </StyledHeader>
 
         <Content>
             {element}
         </Content>
         
-        <Footer>
+        <StyledFooter>
             <StyledPageDivider />
-        </Footer>
-    </main>
+        </StyledFooter>
+    </StyledMain>
 );
 
 RootPageWrapper.propTypes = {

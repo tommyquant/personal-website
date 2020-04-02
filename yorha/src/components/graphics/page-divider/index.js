@@ -16,6 +16,7 @@ const PATTERN_CIRCLE_RADIUS_REM = 0.11;
 
 const Container = styled.div`
     border-top: 2px solid ${fuscousGray};
+    box-sizing: border-box;
     height: 1.6rem;
     width: 100%;
 `;
@@ -66,7 +67,7 @@ const PageDivider = ({
             
             context.fill();
         });
-    }, 250);
+    }, 100);
 
     // Observe the container width so we can recalculate how much the pattern should repeat
     useEffect(() => {
