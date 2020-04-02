@@ -14,6 +14,8 @@ import {
     PAGE_VERTICAL_EDGE_SPACING
 } from '../../common/style/constants';
 
+import GlobalStyle from './global-styles';
+
 const StyledMain = styled.main`
     display: grid;
     grid-template-areas:
@@ -70,32 +72,36 @@ const StyledFooter = styled.footer`
 `;
 
 const RootPageWrapper = ({element}) => (
-    <StyledMain>
-        <FixedWrapper style={{zIndex: -1}}>
-            <Background />
-        </FixedWrapper>
-        <FixedWrapper style={{zIndex: 100}}>
-            <Overlay />
-        </FixedWrapper>
-
-        <StyledHeader>
-            <Navigation>
-                <DoubleBarLine />
-                <StyledButton isActive={true}>Home</StyledButton>
-                <StyledButton>About</StyledButton>
-                <StyledButton>Settings</StyledButton>
-            </Navigation>
-            <StyledPageDivider />
-        </StyledHeader>
-
-        <Content>
-            {element}
-        </Content>
+    <React.Fragment>
+        <GlobalStyle />
         
-        <StyledFooter>
-            <StyledPageDivider />
-        </StyledFooter>
-    </StyledMain>
+        <StyledMain>
+            <FixedWrapper style={{zIndex: -1}}>
+                <Background />
+            </FixedWrapper>
+            <FixedWrapper style={{zIndex: 100}}>
+                <Overlay />
+            </FixedWrapper>
+
+            <StyledHeader>
+                <Navigation>
+                    <DoubleBarLine />
+                    <StyledButton isActive={true}>Home</StyledButton>
+                    <StyledButton>About</StyledButton>
+                    <StyledButton>Settings</StyledButton>
+                </Navigation>
+                <StyledPageDivider />
+            </StyledHeader>
+
+            <Content>
+                {element}
+            </Content>
+            
+            <StyledFooter>
+                <StyledPageDivider />
+            </StyledFooter>
+        </StyledMain>
+    </React.Fragment>
 );
 
 RootPageWrapper.propTypes = {
