@@ -9,7 +9,7 @@ import styledNormalize from 'styled-normalize';
 import {softAmber} from 'yorha/src/common/style/palette';
 
 const client = new ApolloClient({
-    uri: `https://${process.env.SANITY_PROJECT_ID}.apicdn.sanity.io/v1/graphql/${process.env.SANITY_DATASET}/default`,
+    uri: `https://${process.env.GATSBY_SANITY_PROJECT_ID}.apicdn.sanity.io/v1/graphql/${process.env.GATSBY_SANITY_DATASET}/default`,
     fetch // Use the same fetch API for SSR and browser
 });
 
