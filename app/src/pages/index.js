@@ -25,6 +25,7 @@ const StyledLink = styled(Link)`
 const query = gql`
     {
         allPost {
+            _id
             title
             slug {
                 current
@@ -32,6 +33,9 @@ const query = gql`
             feature_image {
                 asset {
                     url
+                    metadata {
+                        lqip
+                    }
                 }
             }
             description
@@ -44,6 +48,8 @@ const Home = () => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
+
+    console.log(data.allPost);
 
     return (
         <Container>
@@ -61,7 +67,7 @@ const Home = () => {
                         forwardedAs={StyledLink}
                         to={`posts/${slug.current}`}
                     >
-                        <PostCard.Header imgSrc={feature_image.asset.url}>
+                        <PostCard.Header imgSrc={feature_image.asset.metadata.lqip}>
                             {title}
                         </PostCard.Header>
                         <PostCard.Description>

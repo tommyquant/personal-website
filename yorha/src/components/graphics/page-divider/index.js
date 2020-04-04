@@ -1,10 +1,10 @@
 import React, {useRef, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ResizeObserver from 'resize-observer-polyfill';
 import throttle from 'lodash/throttle';
 import times from 'lodash/times';
 
+import resizeObserver from '../../../common/resize-observer';
 import {fuscousGray} from '../../../common/style/palette';
 
 import createCanvasGroup from './canvas-group';
@@ -30,52 +30,52 @@ const PageDivider = ({
     const canvasRef = useRef();
     const [canvasSize, setCanvasSize] = useState({width: 1, height: 1});
 
-    const throttledOnResize = throttle((entries) => {
-        entries.forEach((entry) => {
-            const {width, height} = entry.contentRect;
-            setCanvasSize({width, height});
+    const throttledOnResize = throttle((entry) => {
+        const {width, height} = entry.contentRect;
+        setCanvasSize({width, height});
 
-            const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
-            const remUnit = height;
-            const patternWidthPx = remUnit * PATTERN_MIN_SIZE_REM;
-            const innerWidth = width - ((remUnit * PATTERN_RECT_WIDTH_REM) * 2);
-            const repititions = Math.floor(innerWidth / patternWidthPx);
-            
-            context.fillStyle = color;
-            if (repititions > 0) {
-                context.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
-                context.rect(width, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
-            }
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        const remUnit = height;
+        const patternWidthPx = remUnit * PATTERN_MIN_SIZE_REM;
+        const innerWidth = width - (remUnit * PATTERN_RECT_WIDTH_REM * 2); // The total width minus the rectangles at the start and end
+        const repititions = Math.floor(innerWidth / patternWidthPx);
+        
+        if (repititions > 0) {
+            // Draw a rectangle at the start and end
+            context.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
+            context.rect(width, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
 
             times(repititions, (index) => {
+                // When the width is too small to display another rep of the pattern, we're left with empty space at the end.
+                // We divide this space amongst the existing patterns to fill the remaining space.
                 const scaledPatternWidth = patternWidthPx * (innerWidth / (repititions * patternWidthPx));
-
+    
                 const canvasGroup = createCanvasGroup(context, {
                     x: (index * scaledPatternWidth) + (remUnit * PATTERN_RECT_WIDTH_REM),
                     y: 0,
                     width: scaledPatternWidth,
                     height: remUnit
                 });
-
+    
                 canvasGroup.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
                 canvasGroup.circle(0.4, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
                 canvasGroup.circle(0.5, 0.7, remUnit * PATTERN_CIRCLE_RADIUS_REM);
                 canvasGroup.circle(0.6, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
                 canvasGroup.rect(1, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
             });
-            
+
+            context.fillStyle = color;
             context.fill();
-        });
+        }
     }, 100);
 
     // Observe the container width so we can recalculate how much the pattern should repeat
     useEffect(() => {
-        const ro = new ResizeObserver(throttledOnResize);
-        ro.observe(containerRef.current);
+        resizeObserver.observe(throttledOnResize, containerRef.current);
 
         return () =>{
-            ro.disconnect();
+            resizeObserver.unobserve(containerRef.current);
             throttledOnResize.cancel();
         };
     }, []);
