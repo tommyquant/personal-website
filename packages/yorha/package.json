@@ -1,10 +1,10 @@
 {
   "name": "yorha",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "build-storybook",
+    "build": "build-storybook -o public/storybook",
     "watch": "start-storybook -p 9001"
   },
   "author": "",
