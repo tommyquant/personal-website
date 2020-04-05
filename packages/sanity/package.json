@@ -9,7 +9,7 @@
   "scripts": {
     "build": "sanity build public/studio --yes",
     "test": "sanity check",
-    "watch": "sanity start"
+    "watch": "sanity start --host 0.0.0.0 --port 80"
   },
   "keywords": [
     "sanity"
@@ -28,6 +28,7 @@
     "react-youtube": "^7.9.0"
   },
   "devDependencies": {
+    "@sanity/cli": "^1.149.9",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0"
   }
