@@ -1,14 +1,15 @@
 {
-  "name": "personal-website-sanity",
+  "name": "sanity",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "package.json",
   "author": "Tommy Quant <tommyquant@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "watch": "sanity start",
-    "test": "sanity check"
+    "build": "sanity build public/studio --yes",
+    "test": "sanity check",
+    "watch": "sanity start"
   },
   "keywords": [
     "sanity"
