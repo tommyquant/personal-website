@@ -4,10 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`,
-});
-
 module.exports = {
     siteMetadata: {
         title: 'Tommy Tran'
@@ -19,6 +15,12 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-create-client-paths',
             options: {prefixes: ['/posts/*']},
+        },
+        {
+            resolve: 'gatsby-plugin-env-variables',
+            options: {
+                whitelist: ['SANITY_STUDIO_API_PROJECT_ID', 'SANITY_STUDIO_API_DATASET']
+            },
         }
     ]
 };

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  app:
+    image: node:13.12-alpine
+    environment:
+      - NODE_ENV=development
+      - SANITY_STUDIO_API_PROJECT_ID
+      - SANITY_STUDIO_API_DATASET
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+    command: sh -c "cd /app/packages/app && npm run watch"
+
+  sanity:
+    image: node:13.12-alpine
+    environment:
+      - NODE_ENV=development
+      - SANITY_STUDIO_API_PROJECT_ID
+      - SANITY_STUDIO_API_DATASET
+    ports:
+      - "3333:80"
+    volumes:
+      - .:/app
+    command: sh -c "cd /app/packages/sanity && npm run watch"
+
+  yorha:
+    image: node:13.12-alpine
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "9001:80"
+    volumes:
+      - .:/app
+    command: sh -c "cd /app/packages/yorha && npm run watch"

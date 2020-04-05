@@ -1250,6 +1250,11 @@
     fs-extra "^6.0.1"
     promise-props-recursive "^1.0.0"
 
+"@sanity/cli@^1.149.9":
+  version "1.149.9"
+  resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-1.149.9.tgz#32bbe27d5807e94d932760c6785fed6bbbb5b732"
+  integrity sha512-svC5aH+h/BFPMNvxXt6b9FxRc/yIQhY8jPK15h0V+dA4p20LnjXCK//Y+vvhGTqEZ06QLAQv/je2s4Lnzgz0jA==
+
 "@sanity/client@1.149.7":
   version "1.149.7"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.149.7.tgz#117f870cedc5fa51ee36e5003bfb491c51b9f1da"
@@ -7744,6 +7749,11 @@ gatsby-plugin-create-client-paths@^2.2.1:
   integrity sha512-IY7fI3Gr8oufOUVwCqVdoxmh2C+qbTWqPsn0TTgm0LY1rRXagd3n+c0EBxftazNLq4A669fRJpxkGlpIJVqBCA==
   dependencies:
     "@babel/runtime" "^7.8.7"
+
+gatsby-plugin-env-variables@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-env-variables/-/gatsby-plugin-env-variables-1.0.1.tgz#89cdf43b03d46105521bb7d0f09d0d5b92ad83c8"
+  integrity sha512-TnXU+IjvM3iHcaNOa+alqP3Wk19+pmxvXwMyoPaUZIDKNwvpXRz8klsag2AwNlsqD17949/m8I80z8plZRyE1w==
 
 gatsby-plugin-page-creator@^2.2.1:
   version "2.2.1"
