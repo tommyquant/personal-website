@@ -5,7 +5,8 @@
   "private": true,
   "main": "package.json",
   "scripts": {
-    "test": "echo 'Hello World!'"
+    "docker:down": "docker-compose -f docker-compose.yml down --remove-orphans",
+    "docker:up": "docker-compose -f docker-compose.yml up -d --build"
   },
   "repository": {
     "type": "git",
