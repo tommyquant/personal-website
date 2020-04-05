@@ -21,6 +21,11 @@ const Container = styled.div`
     width: 100%;
 `;
 
+const StyledCanvas = styled.canvas`
+    height: 100%;
+    width: 100%;
+`;
+
 const PageDivider = ({
     className,
     color = fuscousGray,
@@ -32,8 +37,15 @@ const PageDivider = ({
 
     const throttledOnResize = throttle((entries) => {
         entries.forEach((entry) => {
+            const dpr = window.devicePixelRatio || 1;
             const {width, height} = entry.contentRect;
-            setCanvasSize({width, height});
+
+            // Scale up the canvas to support high DPI devices. We rely on height and width being at 100%
+            // so that the canvas doesn't overflow the container.
+            setCanvasSize({
+                width: width * dpr,
+                height: height * dpr
+            });
 
             const canvas = canvasRef.current;
             const context = canvas.getContext('2d');
@@ -42,30 +54,32 @@ const PageDivider = ({
             const innerWidth = width - ((remUnit * PATTERN_RECT_WIDTH_REM) * 2);
             const repititions = Math.floor(innerWidth / patternWidthPx);
             
-            context.fillStyle = color;
             if (repititions > 0) {
+                context.scale(dpr, dpr);
+                context.fillStyle = color;
+
                 context.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
                 context.rect(width, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
-            }
-
-            times(repititions, (index) => {
-                const scaledPatternWidth = patternWidthPx * (innerWidth / (repititions * patternWidthPx));
-
-                const canvasGroup = createCanvasGroup(context, {
-                    x: (index * scaledPatternWidth) + (remUnit * PATTERN_RECT_WIDTH_REM),
-                    y: 0,
-                    width: scaledPatternWidth,
-                    height: remUnit
+                
+                times(repititions, (index) => {
+                    const scaledPatternWidth = patternWidthPx * (innerWidth / (repititions * patternWidthPx));
+    
+                    const canvasGroup = createCanvasGroup(context, {
+                        x: (index * scaledPatternWidth) + (remUnit * PATTERN_RECT_WIDTH_REM),
+                        y: 0,
+                        width: scaledPatternWidth,
+                        height: remUnit
+                    });
+    
+                    canvasGroup.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
+                    canvasGroup.circle(0.4, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
+                    canvasGroup.circle(0.5, 0.7, remUnit * PATTERN_CIRCLE_RADIUS_REM);
+                    canvasGroup.circle(0.6, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
+                    canvasGroup.rect(1, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
                 });
-
-                canvasGroup.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
-                canvasGroup.circle(0.4, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
-                canvasGroup.circle(0.5, 0.7, remUnit * PATTERN_CIRCLE_RADIUS_REM);
-                canvasGroup.circle(0.6, 0.3, remUnit * PATTERN_CIRCLE_RADIUS_REM);
-                canvasGroup.rect(1, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
-            });
-            
-            context.fill();
+                
+                context.fill();
+            }
         });
     }, 100);
 
@@ -86,7 +100,7 @@ const PageDivider = ({
             ref={containerRef}
             {...htmlAttributes}
         >
-            <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
+            <StyledCanvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
         </Container>
     );
 };
