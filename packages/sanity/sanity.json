@@ -1,5 +1,9 @@
 {
   "root": true,
+  "api": {
+    "projectId": "dummyProject",
+    "dataset": "dummyDataset"
+  },
   "project": {
     "name": "Personal Website"
   },

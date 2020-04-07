@@ -1,4 +1,5 @@
 const {spawn} = require('child_process');
+const path = require('path');
 
 function execute(commands = [], workingDirectory, env = {}) {
     return new Promise((resolve, reject) => {
@@ -6,13 +7,15 @@ function execute(commands = [], workingDirectory, env = {}) {
             commands.join(' && '),
             {
                 shell: true,
-                cwd: workingDirectory,
+                cwd: workingDirectory || path.resolve(),
                 env: {
                     ...process.env,
                     ...env
                 }
             }
         );
+
+        console.log(commands.join(' && '));
 
         child.stderr.on('data', (data) => void process.stderr.write(data));
         child.stdout.on('data', (data) => void process.stdout.write(data));

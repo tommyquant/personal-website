@@ -3,9 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "build": "gulp build",
-    "docker:down": "docker-compose -f docker-compose.yml -p quant down --remove-orphans",
-    "docker:up": "docker-compose -f docker-compose.yml up -d --build"
+    "task": "gulp"
   },
   "workspaces": [
     "packages/*"
@@ -13,8 +11,5 @@
   "devDependencies": {
     "fs-extra": "^9.0.0",
     "gulp": "^4.0.2"
-  },
-  "dependencies": {
-    "dotenv": "^8.2.0"
   }
 }

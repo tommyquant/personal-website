@@ -5,36 +5,28 @@ services:
     build: .
     image: quant-develop
     environment:
-      - NODE_ENV=development
-      - SANITY_STUDIO_API_PROJECT_ID
-      - SANITY_STUDIO_API_DATASET
+      - SANITY_PROJECT_ID
+      - SANITY_DATASET
     ports:
-      - "8000:80"
+      - "8000:8000"
     volumes:
       - .:/app
-    command: sh -c "cd /app/packages/app && npm run watch"
 
   sanity:
     build: .
     image: quant-develop
     environment:
-      - NODE_ENV=development
-      - SANITY_STUDIO_API_PROJECT_ID
-      - SANITY_STUDIO_API_DATASET
-      - SANITY_STUDIO_PROJECT_BASEPATH
+      - SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID
+      - SANITY_STUDIO_API_DATASET=$SANITY_DATASET
     ports:
-      - "3333:80"
+      - "3333:8000"
     volumes:
       - .:/app
-    command: sh -c "cd /app/packages/sanity && npm run watch"
 
   yorha:
     build: .
     image: quant-develop
-    environment:
-      - NODE_ENV=development
     ports:
-      - "9001:80"
+      - "9001:8000"
     volumes:
       - .:/app
-    command: sh -c "cd /app/packages/yorha && npm run watch"

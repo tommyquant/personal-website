@@ -4,20 +4,20 @@ const path = require('path');
 
 const execute = require('./common/execute');
 
-const buildFolderName = 'public';
-const packagesFolderName = 'packages';
+const BUILD_FOLDER_NAME = 'public';
+const PACKAGES_FOLDER_NAME = 'packages';
 
 function getPackagePath(packageName) {
-    return path.resolve(packagesFolderName, packageName);
+    return path.resolve(PACKAGES_FOLDER_NAME, packageName);
 }
 
 function moveArtifacts(packageName) {
-    return src(`${packagesFolderName}/${packageName}/${buildFolderName}/**/*`)
-        .pipe(dest(buildFolderName));
+    return src(`${PACKAGES_FOLDER_NAME}/${packageName}/${BUILD_FOLDER_NAME}/**/*`)
+        .pipe(dest(BUILD_FOLDER_NAME));
 }
 
 function clean() {
-    return fs.remove(path.resolve(buildFolderName));
+    return fs.remove(path.resolve(BUILD_FOLDER_NAME));
 }
 
 async function buildApp() {
@@ -36,7 +36,7 @@ async function buildApp() {
 async function buildSanity() {
     const packageName = 'sanity';
     await execute(
-        [`npm run build -- ${buildFolderName}/studio --yes`],
+        [`npm run build -- ${BUILD_FOLDER_NAME}/studio --yes`],
         getPackagePath(packageName),
         {
             SANITY_STUDIO_API_PROJECT_ID: process.env.SANITY_PROJECT_ID,
@@ -50,7 +50,7 @@ async function buildSanity() {
 
 async function buildYorha() {
     const packageName = 'yorha';
-    await execute([`npm run build -- --output-dir ${buildFolderName}/storybook`], getPackagePath(packageName));
+    await execute([`npm run build -- --output-dir ${BUILD_FOLDER_NAME}/storybook`], getPackagePath(packageName));
     return moveArtifacts(packageName);
 }
 

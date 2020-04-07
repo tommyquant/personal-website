@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app:
+    environment:
+      - NODE_ENV=development
+    command: sh -c "cd /app/packages/app && npm run watch -- --host 0.0.0.0 --port 8000"
+
+  sanity:
+    environment:
+      - NODE_ENV=development
+    command: sh -c "cd /app/packages/sanity && npm run watch -- --host 0.0.0.0 --port 8000"
+
+  yorha:
+    environment:
+      - NODE_ENV=development
+    command: sh -c "cd /app/packages/yorha && npm run watch -- --host 0.0.0.0 --port 8000"
