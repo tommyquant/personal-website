@@ -1,24 +1,16 @@
 {
   "name": "personal-website",
   "version": "1.1.0",
-  "description": "",
   "private": true,
-  "main": "package.json",
   "scripts": {
-    "docker:down": "docker-compose -f docker-compose.yml down --remove-orphans",
+    "build": "gulp build",
+    "docker:down": "docker-compose -f docker-compose.yml -p quant down --remove-orphans",
     "docker:up": "docker-compose -f docker-compose.yml up -d --build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tommyquant/personal-website.git"
   },
   "workspaces": [
     "packages/*"
   ],
-  "author": "Tommy Tran",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tommyquant/personal-website/issues"
-  },
-  "homepage": "https://github.com/tommyquant/personal-website#readme"
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }

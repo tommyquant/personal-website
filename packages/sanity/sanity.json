@@ -1,11 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "Personal Website"
-  },
-  "api": {
-    "projectId": "uq8qbp25",
-    "dataset": "production"
+    "name": "Personal Website",
+    "basePath": "/studio"
   },
   "plugins": [
     "@sanity/base",
