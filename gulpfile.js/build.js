@@ -1,64 +1,64 @@
-const {src, dest, parallel} = require('gulp');
-const {spawn} = require('child_process');
+const fs = require('fs-extra');
+const {src, dest, series, parallel} = require('gulp');
 const path = require('path');
+
+const execute = require('./common/execute');
 
 const buildFolderName = 'public';
 const packagesFolderName = 'packages';
-const packagesPath = path.resolve(packagesFolderName);
 
 function getPackagePath(packageName) {
-    return path.join(packagesPath, packageName);
+    return path.resolve(packagesFolderName, packageName);
 }
 
-function execute(commands = [], workingDirectory) {
-    return new Promise((resolve, reject) => {
-        const child = spawn(
-            commands.join(' && '),
-            {
-                shell: true,
-                cwd: workingDirectory
-            }
-        );
-    
-        child.stderr.on('data', (data) => void process.stderr.write(data));
-        child.stdout.on('data', (data) => void process.stdout.write(data));
-        child.on('exit', (code, signal) => {
-            if (code !== 0) {
-                reject(`Task exited with code ${code} and signal ${signal}`);
-            } else {
-                resolve();
-            }
-        })
-    });
+function moveArtifacts(packageName) {
+    return src(`${packagesFolderName}/${packageName}/${buildFolderName}/**/*`)
+        .pipe(dest(buildFolderName));
 }
 
-async function buildApp(cb) {
+function clean() {
+    return fs.remove(path.resolve(buildFolderName));
+}
+
+async function buildApp() {
     const packageName = 'app';
-    await execute(['npm run build'], getPackagePath(packageName));
-
-    return src(`${packagesFolderName}/${packageName}/${buildFolderName}/*`)
-        .pipe(dest(buildFolderName));
-
+    await execute(
+        ['npm run build'],
+        getPackagePath(packageName),
+        {
+            SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+            SANITY_DATASET: process.env.SANITY_DATASET
+        }
+    );
+    return moveArtifacts(packageName);
 }
 
-async function buildSanity(cb) {
+async function buildSanity() {
     const packageName = 'sanity';
-    await execute([`npm run build -- ${buildFolderName}/studio --yes`], getPackagePath(packageName));
+    await execute(
+        [`npm run build -- ${buildFolderName}/studio --yes`],
+        getPackagePath(packageName),
+        {
+            SANITY_STUDIO_API_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+            SANITY_STUDIO_API_DATASET: process.env.SANITY_DATASET,
 
-    return src(`${packagesFolderName}/${packageName}/${buildFolderName}/*`)
-        .pipe(dest(buildFolderName));
+        }
+
+    );
+    return moveArtifacts(packageName);
 }
 
-async function buildYorha(cb) {
+async function buildYorha() {
     const packageName = 'yorha';
     await execute([`npm run build -- --output-dir ${buildFolderName}/storybook`], getPackagePath(packageName));
-
-    return src(`${packagesFolderName}/${packageName}/${buildFolderName}/*`)
-        .pipe(dest(buildFolderName));
+    return moveArtifacts(packageName);
 }
 
-module.exports = parallel(
-    buildApp,
-    buildSanity,
-    buildYorha
+module.exports = series(
+    clean,
+    parallel(
+        buildApp,
+        buildSanity,
+        buildYorha
+    )
 );

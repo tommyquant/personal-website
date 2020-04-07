@@ -11,6 +11,10 @@
     "packages/*"
   ],
   "devDependencies": {
+    "fs-extra": "^9.0.0",
     "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }

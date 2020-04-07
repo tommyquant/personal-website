@@ -1,8 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "Personal Website",
-    "basePath": "/studio"
+    "name": "Personal Website"
   },
   "plugins": [
     "@sanity/base",
