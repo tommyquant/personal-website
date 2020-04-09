@@ -1,64 +1,45 @@
 const fs = require('fs-extra');
-const {src, dest, series, parallel} = require('gulp');
+const {series} = require('gulp');
 const path = require('path');
 
-const execute = require('./common/execute');
+const {execute} = require('./common/execute');
+const {DEFAULT_COMPOSE_PROJECT_NAME, getBaseArgs} = require('./common/docker');
 
-const BUILD_FOLDER_NAME = 'public';
-const PACKAGES_FOLDER_NAME = 'packages';
+const COMPOSE_FILES = ['docker-compose.yml', 'docker-compose.build.yml'];
+const PROJECT_NAME = `${DEFAULT_COMPOSE_PROJECT_NAME}-build`;
+const BUILD_FOLDER = 'public';
 
-function getPackagePath(packageName) {
-    return path.resolve(PACKAGES_FOLDER_NAME, packageName);
+function cleanRootBuildFolder() {
+    // Remove the root build folder
+    return fs.remove(path.resolve(BUILD_FOLDER));
 }
 
-function moveArtifacts(packageName) {
-    return src(`${PACKAGES_FOLDER_NAME}/${packageName}/${BUILD_FOLDER_NAME}/**/*`)
-        .pipe(dest(BUILD_FOLDER_NAME));
+function cleanContainers() {
+    return execute('docker-compose', `${getBaseArgs(COMPOSE_FILES, PROJECT_NAME)} down --remove-orphans`);
 }
 
-function clean() {
-    return fs.remove(path.resolve(BUILD_FOLDER_NAME));
+function up() {
+    return execute('docker-compose', `${getBaseArgs(COMPOSE_FILES, PROJECT_NAME)} up -d --build`);
 }
 
-async function buildApp() {
-    const packageName = 'app';
-    await execute(
-        ['npm run build'],
-        getPackagePath(packageName),
-        {
-            SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
-            SANITY_DATASET: process.env.SANITY_DATASET
-        }
-    );
-    return moveArtifacts(packageName);
+function watchLogs() {
+    return execute('docker-compose', `${getBaseArgs(COMPOSE_FILES, PROJECT_NAME)} logs --tail=0 --follow`);
 }
 
-async function buildSanity() {
-    const packageName = 'sanity';
-    await execute(
-        [`npm run build -- ${BUILD_FOLDER_NAME}/studio --yes`],
-        getPackagePath(packageName),
-        {
-            SANITY_STUDIO_API_PROJECT_ID: process.env.SANITY_PROJECT_ID,
-            SANITY_STUDIO_API_DATASET: process.env.SANITY_DATASET,
-
-        }
-
-    );
-    return moveArtifacts(packageName);
+function moveArtifacts() {
+    return src(`packages/*/${BUILD_FOLDER}/**/*`)
+        .pipe(dest(BUILD_FOLDER));
 }
 
-async function buildYorha() {
-    const packageName = 'yorha';
-    await execute([`npm run build -- --output-dir ${BUILD_FOLDER_NAME}/storybook`], getPackagePath(packageName));
-    return moveArtifacts(packageName);
-}
+module.exports.clean = series(
+    cleanRootBuildFolder,
+    cleanContainers,
+);
 
-module.exports = series(
-    clean,
-    parallel(
-        buildApp,
-        buildSanity,
-        buildYorha
-    )
+module.exports.build = series(
+    cleanRootBuildFolder,
+    cleanContainers,
+    up,
+    watchLogs,
+    moveArtifacts
 );

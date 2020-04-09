@@ -1,5 +1,5 @@
 function modifyWebpackPublicPath(config) {
-    config.output.publicPath = process.env.STORYBOOL_BASE_PATH || config.output.publicPath;
+    config.output.publicPath = process.env.STORYBOOK_BASE_PATH || config.output.publicPath;
         
     return config;
 }

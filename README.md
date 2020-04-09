@@ -2,7 +2,7 @@
 
 To run Gulp tasks, use `yarn run task <task-name>`.
 
-Check `gulpfile.js/index.js` for available Gulp tasks.
+To see available tasks, run `yarn run task --tasks`.
 
 ## Tech stack
 

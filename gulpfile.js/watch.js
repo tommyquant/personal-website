@@ -1,14 +1,19 @@
-const execute = require('./common/execute');
-const {COMPOSE_PROJECT_NAME} = require('./common/docker');
+const {execute} = require('./common/execute');
+const {DEFAULT_COMPOSE_PROJECT_NAME, getBaseArgs} = require('./common/docker');
 
-const WATCH_FILE_SUFFIX = 'watch';
+const COMPOSE_FILES = ['docker-compose.yml', 'docker-compose.watch.yml'];
+const PROJECT_NAME = `${DEFAULT_COMPOSE_PROJECT_NAME}-watch`;
 
-function down(cb) {
-    return execute([`docker-compose -f docker-compose.yml -f docker-compose.${WATCH_FILE_SUFFIX}.yml -p ${COMPOSE_PROJECT_NAME} down --remove-orphans`]);
+function down() {
+    return execute('docker-compose', `${getBaseArgs(COMPOSE_FILES, PROJECT_NAME)} down --remove-orphans`);
 }
 
-function up() {
-    return execute([`docker-compose -f docker-compose.yml -f docker-compose.${WATCH_FILE_SUFFIX}.yml -p ${COMPOSE_PROJECT_NAME} up -d --build`]);
+async function up(cb) {
+    try {
+        return execute('docker-compose', `${getBaseArgs(COMPOSE_FILES, PROJECT_NAME)} up -d --build`);
+    } catch (error) {
+        cb(error);
+    }
 }
 
 module.exports = {
