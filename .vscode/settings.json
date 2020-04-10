@@ -2,6 +2,7 @@
     "eslint.workingDirectories": [
         "app",
         "sanity",
-        "yorha"
+        "yorha",
+        "runner"
     ]
 }
