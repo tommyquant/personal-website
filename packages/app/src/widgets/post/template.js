@@ -9,7 +9,8 @@ import {fontFamily} from 'yorha/src/common/style/font';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 import Card from 'yorha/src/components/card';
 
-import Image from './components/image';
+import {getSrcsetOptions} from '../../common/sanity-image';
+import ResponsiveImg from '../../components/responsive-img';
 import serializers from './serializers';
 
 const PostTitle = styled.h1`
@@ -41,8 +42,7 @@ const StyledDoubleBarLine = styled(DoubleBarLine)`
 
 const PostTemplate = ({
     title,
-    date_posted,
-    featureImageUrl,
+    feature_image,
     bodyRaw
 }) => {
     return (
@@ -51,9 +51,13 @@ const PostTemplate = ({
             <Content>
                 <StyledDoubleBarLine color={taupeGray} />
                 <StyledCard hasShadow={true}>
-                    <h2>{new Date(date_posted).toDateString()}</h2>
-                    <Image src={featureImageUrl} />
-                    <BlockContent blocks={bodyRaw} serializers={serializers} />
+                    <ResponsiveImg center srcsetOptions={getSrcsetOptions(feature_image)} fallbackSrc={feature_image.asset.url} />
+                    <BlockContent
+                        projectId={process.env.GATSBY_SANITY_PROJECT_ID}
+                        dataset={process.env.GATSBY_SANITY_DATASET}
+                        blocks={bodyRaw}
+                        serializers={serializers}
+                    />
                 </StyledCard>
             </Content>
         </React.Fragment>
@@ -62,8 +66,7 @@ const PostTemplate = ({
 
 PostTemplate.propTypes = {
     title: PropTypes.string,
-    date_posted: PropTypes.string,
-    featureImageUrl: PropTypes.string,
+    feature_image: PropTypes.object,
     bodyRaw: PropTypes.any
 };
 
