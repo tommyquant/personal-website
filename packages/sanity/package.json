@@ -1,18 +1,13 @@
 {
-  "name": "personal-website-sanity",
+  "name": "sanity",
   "private": true,
-  "version": "1.0.0",
-  "description": "",
-  "main": "package.json",
-  "author": "Tommy Quant <tommyquant@gmail.com>",
+  "version": "0.0.0",
   "license": "UNLICENSED",
   "scripts": {
-    "watch": "sanity start",
-    "test": "sanity check"
+    "build": "sanity build",
+    "test": "sanity check",
+    "watch": "sanity start"
   },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
     "@sanity/base": "^1.149.3",
     "@sanity/components": "^1.149.3",
@@ -27,6 +22,7 @@
     "react-youtube": "^7.9.0"
   },
   "devDependencies": {
+    "@sanity/cli": "^1.149.9",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0"
   }

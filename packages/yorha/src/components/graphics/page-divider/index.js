@@ -21,6 +21,11 @@ const Container = styled.div`
     width: 100%;
 `;
 
+const StyledCanvas = styled.canvas`
+    height: 100%;
+    width: 100%;
+`;
+
 const PageDivider = ({
     className,
     color = fuscousGray,
@@ -31,8 +36,15 @@ const PageDivider = ({
     const [canvasSize, setCanvasSize] = useState({width: 1, height: 1});
 
     const throttledOnResize = throttle((entry) => {
+        const dpr = window.devicePixelRatio || 1;
         const {width, height} = entry.contentRect;
-        setCanvasSize({width, height});
+        
+        // Scale up the canvas to support high DPI devices. We rely on height and width being at 100%
+        // so that the canvas doesn't overflow the container.
+        setCanvasSize({
+            width: width * dpr,
+            height: height * dpr
+        });
 
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
@@ -42,6 +54,8 @@ const PageDivider = ({
         const repititions = Math.floor(innerWidth / patternWidthPx);
         
         if (repititions > 0) {
+            context.scale(dpr, dpr);
+
             // Draw a rectangle at the start and end
             context.rect(0, 0, remUnit * PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
             context.rect(width, 0, remUnit * -PATTERN_RECT_WIDTH_REM, remUnit * PATTERN_RECT_HEIGHT_REM);
@@ -68,7 +82,7 @@ const PageDivider = ({
             context.fillStyle = color;
             context.fill();
         }
-    }, 100);
+    });
 
     // Observe the container width so we can recalculate how much the pattern should repeat
     useEffect(() => {
@@ -86,7 +100,7 @@ const PageDivider = ({
             ref={containerRef}
             {...htmlAttributes}
         >
-            <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
+            <StyledCanvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
         </Container>
     );
 };
