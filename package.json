@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "serve": "npx serve -l 3333 public",
+    "serve": "npx http-server public -p 3333 --gzip",
     "task": "gulp"
   },
   "workspaces": [
