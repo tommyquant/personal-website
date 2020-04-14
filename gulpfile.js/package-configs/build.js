@@ -1,5 +1,3 @@
-const {config} = require('../common/config');
-
 const BUILD_SCRIPT_NAME = 'build';
 
 module.exports = {
@@ -11,19 +9,19 @@ module.exports = {
     sanity: {
         execute: {
             command: BUILD_SCRIPT_NAME,
-            args: `public${config.STUDIO_BASE_PATH} --yes`
+            args: `public${process.env.STUDIO_BASE_PATH} --yes`
         },
         env: {
-            SANITY_STUDIO_PROJECT_BASEPATH: config.STUDIO_BASE_PATH
+            SANITY_STUDIO_PROJECT_BASEPATH: process.env.STUDIO_BASE_PATH
         }
     },
     yorha: {
         execute: {
             command: BUILD_SCRIPT_NAME,
-            args: `--output-dir public${config.STORYBOOK_BASE_PATH}`
+            args: `--output-dir public${process.env.STORYBOOK_BASE_PATH}`
         },
         env: {
-            STORYBOOK_BASE_PATH: config.STORYBOOK_BASE_PATH
+            STORYBOOK_BASE_PATH: process.env.STORYBOOK_BASE_PATH
         }
     }
 };

@@ -30,10 +30,7 @@ function run(command, args, options = {}) {
                 cwd: workDir,
                 env: npmRunPath.env({
                     cwd: workDir,
-                    env: {
-                        ...process.env,
-                        ...options.env
-                    }
+                    env: options.env
                 })
             }
         );

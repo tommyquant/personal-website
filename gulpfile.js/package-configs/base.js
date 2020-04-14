@@ -1,5 +1,3 @@
-const {config} = require('../common/config');
-
 const PACKAGES_FOLDER = 'packages';
 
 module.exports = {
@@ -7,15 +5,15 @@ module.exports = {
         directory: `${PACKAGES_FOLDER}/app`,
         env: {
             GATSBY_TELEMETRY_DISABLED: 1,
-            GATSBY_SANITY_PROJECT_ID: config.SANITY_PROJECT_ID,
-            GATSBY_SANITY_DATASET: config.SANITY_DATASET
+            GATSBY_SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+            GATSBY_SANITY_DATASET: process.env.SANITY_DATASET
         }
     },
     sanity: {
         directory: `${PACKAGES_FOLDER}/sanity`,
         env: {
-            SANITY_STUDIO_API_PROJECT_ID: config.SANITY_PROJECT_ID,
-            SANITY_STUDIO_API_DATASET: config.SANITY_DATASET,
+            SANITY_STUDIO_API_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+            SANITY_STUDIO_API_DATASET: process.env.SANITY_DATASET,
         }
     },
     yorha: {

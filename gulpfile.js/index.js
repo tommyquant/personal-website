@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports['build'] = require('./build');
 module.exports['watch-app'] = require('./watch').watchApp;
 module.exports['watch-sanity'] = require('./watch').watchSanity;
