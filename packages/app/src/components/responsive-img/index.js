@@ -9,15 +9,16 @@ import {getSrcsetFromOptions} from '../../common/srcset';
 
 const ImageWrapper = styled.div`
     width: 100%;
+
+    ${({center}) => center && css`
+        display: flex;
+        justify-content: center;
+    `}
 `;
 
 const StyledImg = styled.img`
     display: block;
     max-width: 100%;
-
-    ${({center}) => center && css`
-        margin: 0 auto;
-    `}
 `;
 
 const ResponsiveImg = ({
@@ -56,12 +57,12 @@ const ResponsiveImg = ({
         <ImageWrapper
             className={className}
             ref={wrapperRef}
+            center={center}
             {...htmlAttributes}
         >
             <StyledImg
                 ref={imageRef}
-                center={center}
-                srcSet={getSrcsetFromOptions(srcsetOptions)}
+                srcSet={getSrcsetFromOptions(srcsetOptions) || null}
                 sizes={`${width}px`}
                 src={fallbackSrc}
             />

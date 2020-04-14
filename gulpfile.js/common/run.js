@@ -39,9 +39,9 @@ function run(command, args, options = {}) {
         );
 
         child.on('exit', (code, signal) => {
-            const message = `\nCommand exited with code: ${code} and signal: ${signal}. See command below.\n${command} ${args}\n`;
+            const message = `\nCommand exited with code: ${code} and signal: ${signal}. See command below.\n${command} ${normalizedArgs.join(' ')}\n`;
             
-            if (code !== 0 || signal) {
+            if (code !== 0 && code !== null) {
                 reject(new Error(message));
             } else {
                 console.log(message);

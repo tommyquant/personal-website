@@ -17,7 +17,27 @@ export function getImageUrl(source) {
 }
 
 export function getSrcsetOptions(source) {
-    return WIDTHS.reduce((accum, width) => {
-        // console.log(imageUrlBuilder.image(source).width(width).fit('max').url());
+    const id = source.asset._ref || source.asset._id;
+
+    if (!id) {
+        return undefined;
+    }
+
+    const [, originalWidth] = id.match(/-(\d+)x(\d+)-/);
+
+    const srcsetOptions = WIDTHS.reduce((accum, width) => {
+        if (width < originalWidth) {
+            return {
+                ...accum,
+                [width]: imageUrlBuilder.image(source).width(width).fit('max').url()
+            };
+        }
+
+        return accum;
     });
+
+    return {
+        ...srcsetOptions,
+        [originalWidth]: getImageUrl(source)
+    };
 }

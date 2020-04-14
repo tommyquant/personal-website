@@ -11,16 +11,9 @@ const GET_POST_BY_SLUG = gql`
         allPost(where: {slug: {current: {eq: $slug}}}) {
             title
             feature_image {
-                _key
                 asset {
                     _id
                     url
-                    metadata {
-                        dimensions {
-                            width
-                        }
-                        lqip
-                    }
                 }
             }
             bodyRaw

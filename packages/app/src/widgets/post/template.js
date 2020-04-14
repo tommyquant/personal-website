@@ -9,7 +9,7 @@ import {fontFamily} from 'yorha/src/common/style/font';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 import Card from 'yorha/src/components/card';
 
-import {getImageUrl} from '../../common/sanity-image';
+import {getSrcsetOptions} from '../../common/sanity-image';
 import ResponsiveImg from '../../components/responsive-img';
 import serializers from './serializers';
 
@@ -45,15 +45,13 @@ const PostTemplate = ({
     feature_image,
     bodyRaw
 }) => {
-    // console.log(feature_image);
-
     return (
         <React.Fragment>
             <PostTitle>{title}</PostTitle>
             <Content>
                 <StyledDoubleBarLine color={taupeGray} />
                 <StyledCard hasShadow={true}>
-                    <ResponsiveImg center />
+                    <ResponsiveImg center srcsetOptions={getSrcsetOptions(feature_image)} fallbackSrc={feature_image.asset.url} />
                     <BlockContent
                         projectId={process.env.GATSBY_SANITY_PROJECT_ID}
                         dataset={process.env.GATSBY_SANITY_DATASET}
