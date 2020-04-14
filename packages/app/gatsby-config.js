@@ -19,7 +19,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-env-variables',
             options: {
-                whitelist: ['SANITY_STUDIO_API_PROJECT_ID', 'SANITY_STUDIO_API_DATASET']
+                whitelist: ['SANITY_PROJECT_ID', 'SANITY_DATASET']
             },
         }
     ]
