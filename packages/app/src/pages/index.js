@@ -6,6 +6,7 @@ import {Link} from '@reach/router';
 
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 
+import {getSrcsetOptions} from '../common/sanity-image';
 import PostGrid from '../components/post-grid';
 import PostCard from '../components/post-card';
 
@@ -19,6 +20,7 @@ const Container = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+    outline: none;
     text-decoration: none;
 `;
 
@@ -31,6 +33,7 @@ const query = gql`
             }
             feature_image {
                 asset {
+                    _id
                     url
                 }
             }
@@ -61,8 +64,14 @@ const Home = () => {
                         forwardedAs={StyledLink}
                         to={`posts/${slug.current}`}
                     >
-                        <PostCard.Header imgSrc={feature_image.asset.url}>
-                            {title}
+                        <PostCard.Header>
+                            <PostCard.Header.Image
+                                srcsetOptions={getSrcsetOptions(feature_image)}
+                                fallbackSrc={feature_image.asset.url}
+                            />
+                            <PostCard.Header.Title>
+                                {title}
+                            </PostCard.Header.Title>
                         </PostCard.Header>
                         <PostCard.Description>
                             {description}

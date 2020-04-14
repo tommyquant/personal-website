@@ -8,11 +8,11 @@ import transition from 'yorha/src/common/style/transition';
 
 import Card from 'yorha/src/components/card';
 
-const StyledImage = styled.img`
-    display: block;
+import ResponsiveImg from '../../components/responsive-img';
+
+const StyledResponsiveImg = styled(ResponsiveImg)`
     filter: sepia(1);
     transition: ${transition('filter')};
-    width: 100%;
 `;
 
 const StyledHeader = styled.header`
@@ -38,20 +38,25 @@ const Description = styled.p`
     padding: 0.5em 1em;
 `;
 
+const PostHeaderTitle = ({children}) => (
+    <TitleWrapper>
+        <Title>
+            {children}
+        </Title>
+    </TitleWrapper>
+);
+
+PostHeaderTitle.propTypes = {
+    children: PropTypes.node
+};
+
 const PostHeader = ({
     children,
     className,
-    imgSrc,
-    imgAlt,
     ...htmlAttributes
 }) => (
     <StyledHeader className={className} {...htmlAttributes}>
-        <StyledImage src={imgSrc} alt={imgAlt} />
-        <TitleWrapper>
-            <Title>
-                {children}
-            </Title>
-        </TitleWrapper>
+        {children}
     </StyledHeader>
 );
 
@@ -62,12 +67,15 @@ PostHeader.propTypes = {
     imgAlt: PropTypes.string
 };
 
+PostHeader.Image = StyledResponsiveImg;
+PostHeader.Title = PostHeaderTitle;
+
 const StyledCard = styled(Card)`
     font-family: ${fontFamily};
 
     &:focus,
     &:hover {
-        ${StyledImage} {
+        ${StyledResponsiveImg} {
             filter: sepia(0);
         }
 
