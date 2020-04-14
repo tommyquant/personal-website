@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const {parallel, series} = require('gulp');
+const {series} = require('gulp');
 
 const {runScript} = require('./common/run');
 const {getPackagesConfig} = require('./package-configs');
@@ -62,11 +62,9 @@ async function copyArtifacts(cb) {
 }
 
 module.exports = series(
-    parallel(
-        buildApp,
-        buildSanity,
-        buildYorha
-    ),
+    buildApp,
+    buildSanity,
+    buildYorha,
     clean,
     copyArtifacts
 );

@@ -1,12 +1,13 @@
 function customizeWebpack(config) {
-    config.output.publicPath = process.env.STORYBOOK_BASE_PATH || config.output.publicPath;
+    const publicPath = process.env.STORYBOOK_BASE_PATH || config.output.publicPath;
+    config.output.publicPath = `${publicPath.replace(/\/$/, "")}/`;
 
     config.module.rules.push({
         test: /\.js$/,
         loader: 'string-replace-loader',
         options: {
             search: 'iframe.html',
-            replace: `${config.output.publicPath}/iframe.html`,
+            replace: `${config.output.publicPath}iframe.html`,
             flags: 'g'
         }
     });
