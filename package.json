@@ -3,13 +3,17 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "serve": "npx serve -l 3333 public"
+    "serve": "npx serve -l 3333 public",
+    "task": "gulp"
   },
   "workspaces": [
-    "packages/*",
-    "monorun"
+    "packages/*"
   ],
   "dependencies": {
-    "monorun": "0.0.0"
+    "cross-spawn": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "fs-extra": "^9.0.0",
+    "gulp": "^4.0.2",
+    "npm-run-path": "^4.0.1"
   }
 }
