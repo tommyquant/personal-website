@@ -47,7 +47,7 @@ const ResponsiveImg = ({
     useEffect(() => {
         resizeObserver.observe(throttledOnResize, wrapperRef.current);
 
-        return () =>{
+        return () => {
             resizeObserver.unobserve(wrapperRef.current);
             throttledOnResize.cancel();
         };
