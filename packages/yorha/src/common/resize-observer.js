@@ -6,13 +6,16 @@ const resizeObserver = new ResizeObserver((entries) => {
     });
 });
 
-export function observe(callback, element) {
+function observe(callback, element) {
     element.onResize = callback;
     resizeObserver.observe(element);
 }
 
+function unobserve(element) {
+    resizeObserver.unobserve(element);
+}
+
 export default {
     observe,
-    unobserve: resizeObserver.unobserve,
-    disconnect: resizeObserver.disconnect
+    unobserve
 };
