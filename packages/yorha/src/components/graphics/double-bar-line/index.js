@@ -1,32 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import {taupeGray} from '../../../common/style/palette';
 
+const DEFAULT_COLOR = taupeGray;
+
+export const baseStyles = css`
+    border: solid ${({color}) => color || DEFAULT_COLOR};
+    border-width: 0 0.15em 0 0.6em;
+    box-sizing: border-box;
+    font-size: 1.3em;
+    height: 100%;
+    width: 1em;
+`;
+
 const Graphic = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 1.3em;
-
-    &::before {
-        background-color: ${({color}) => color};
-        content: '';
-        height: 100%;
-        width: 60%;
-    }
-
-    &::after {
-        background-color: ${({color}) => color};
-        content: '';
-        height: 100%;
-        width: 15%;
-    }
+    ${baseStyles}
 `;
 
 const DoubleBarLine = ({
     className,
-    color = taupeGray,
+    color = DEFAULT_COLOR,
     ...htmlAttributes
 }) => (
     <Graphic className={className} color={color} {...htmlAttributes} />

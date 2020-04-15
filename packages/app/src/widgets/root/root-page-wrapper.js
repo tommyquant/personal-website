@@ -61,7 +61,7 @@ const Content = styled.section`
     box-sizing: border-box;
     display: flex;
     grid-area: content;
-    padding: 2rem ${PAGE_HORIZONTAL_EDGE_SPACING};
+    padding: 1.5rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
     width: 100%;
 `;
 

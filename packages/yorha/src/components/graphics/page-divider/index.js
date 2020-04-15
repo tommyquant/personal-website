@@ -87,7 +87,6 @@ const PageDivider = ({
     // Observe the container width so we can recalculate how much the pattern should repeat
     useEffect(() => {
         resizeObserver.observe(throttledOnResize, containerRef.current);
-        console.log(resizeObserver);
 
         return () => {
             resizeObserver.unobserve(containerRef.current);
