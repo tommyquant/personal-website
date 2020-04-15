@@ -52,11 +52,28 @@ async function clean() {
     return fs.remove(BUILD_FOLDER_NAME);
 }
 
-async function copyArtifacts(cb) {
-    for (const package of Object.values(packagesConfig)) {
-        console.log(`Copying artifacts from ${path.join(package.directory, BUILD_FOLDER_NAME)} to ${BUILD_FOLDER_NAME}`)
-        await fs.copy(path.resolve(package.directory, BUILD_FOLDER_NAME), BUILD_FOLDER_NAME);
-    }
+function copyArtifacts(cb) {
+    Object.values(packagesConfig).map((package) => {
+        console.log(`Copying artifacts from ${path.join(package.directory, BUILD_FOLDER_NAME)} to ${BUILD_FOLDER_NAME}`);
+
+        fs.copySync(path.resolve(package.directory, BUILD_FOLDER_NAME), BUILD_FOLDER_NAME);
+    });
+
+    cb();
+}
+
+function createNetlifyRedirects(cb) {
+    const redirects = [];
+
+    Object.values(packagesConfig).map((package) => {
+        if (Array.isArray(package.redirects)) {
+            package.redirects.map((redirect) => redirects.push(redirect));
+        }
+    });
+
+    console.log(`Creating redirects file`);
+    console.log(redirects.join('\n'));
+    fs.writeFileSync(path.resolve(BUILD_FOLDER_NAME, '_redirects'), redirects.join('\n'));
 
     cb();
 }
@@ -66,5 +83,6 @@ module.exports = series(
     buildSanity,
     buildYorha,
     clean,
-    copyArtifacts
+    copyArtifacts,
+    createNetlifyRedirects
 );
