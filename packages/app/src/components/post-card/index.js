@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import {fuscousGray, softAmber, taupeGray} from 'yorha/src/common/style/palette';
-import {fontFamily} from 'yorha/src/common/style/font';
+import {fontFamily, lineHeight} from 'yorha/src/common/style/font';
 import transition from 'yorha/src/common/style/transition';
 
 import Card from 'yorha/src/components/card';
@@ -72,6 +72,7 @@ PostHeader.Title = PostHeaderTitle;
 
 const StyledCard = styled(Card)`
     font-family: ${fontFamily};
+    line-height: ${lineHeight};
 
     &:focus,
     &:hover {
