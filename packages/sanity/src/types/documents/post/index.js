@@ -1,4 +1,4 @@
-
+import {reference as imageExtendedRef} from '../../objects/image-extended';
 import {reference as youtubeRef} from '../../objects/youtube';
 import {reference as authorRef} from '../author';
 import categories from './categories';
@@ -59,7 +59,7 @@ export default {
         {
             title: 'Feature Image',
             name: 'feature_image',
-            type: 'image',
+            type: imageExtendedRef,
             validation: (Rule) => Rule.required()
         },
         {
@@ -77,7 +77,7 @@ export default {
                     type: 'block'
                 },
                 {
-                    type: 'image'
+                    type: imageExtendedRef
                 },
                 {
                     type: youtubeRef

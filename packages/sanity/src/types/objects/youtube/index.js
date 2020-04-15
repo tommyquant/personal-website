@@ -1,4 +1,3 @@
-
 import Preview from './preview';
 
 export const reference = 'youtube';
