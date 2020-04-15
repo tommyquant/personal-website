@@ -32,6 +32,7 @@ const query = gql`
                 current
             }
             feature_image {
+                description
                 asset {
                     _id
                     url
@@ -68,6 +69,7 @@ const Home = () => {
                             <PostCard.Header.Image
                                 srcsetOptions={getSrcsetOptions(feature_image)}
                                 fallbackSrc={feature_image.asset.url}
+                                alt={feature_image.description}
                             />
                             <PostCard.Header.Title>
                                 {title}
