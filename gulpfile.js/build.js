@@ -78,10 +78,10 @@ function createNetlifyRedirects(cb) {
 }
 
 module.exports = series(
-    // buildApp,
-    // buildSanity,
-    // buildYorha,
-    // clean,
-    // copyArtifacts,
+    buildApp,
+    buildSanity,
+    buildYorha,
+    clean,
+    copyArtifacts,
     createNetlifyRedirects
 );
