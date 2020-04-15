@@ -11,6 +11,7 @@ const GET_POST_BY_SLUG = gql`
         allPost(where: {slug: {current: {eq: $slug}}}) {
             title
             feature_image {
+                description
                 asset {
                     _id
                     url

@@ -63,7 +63,14 @@ const PostTemplate = ({
             <Content>
                 <StyledDoubleBarLine color={taupeGray} />
                 <StyledCard hasShadow={true}>
-                    {!!feature_image && <ResponsiveImg center srcsetOptions={getSrcsetOptions(feature_image)} fallbackSrc={feature_image.asset.url} />}
+                    {!!feature_image && (
+                        <ResponsiveImg
+                            center
+                            srcsetOptions={getSrcsetOptions(feature_image)}
+                            fallbackSrc={feature_image.asset.url}
+                            alt={feature_image.description}
+                        />
+                    )}
                     
                     {!!bodyRaw && (
                         <BlockContent

@@ -27,7 +27,12 @@ const BlockRenderer = (props) => {
 const serializers = {
     types: {
         block: BlockRenderer,
-        image: ({node}) => <ResponsiveImg center srcsetOptions={getSrcsetOptions(node)} fallbackSrc={getImageUrl(node)} />,
+        image_extended: ({node}) => (<ResponsiveImg
+            center
+            srcsetOptions={getSrcsetOptions(node)}
+            fallbackSrc={getImageUrl(node)}
+            alt={node.description}
+        />),
         youtube: ({node}) => <Youtube videoId={node.video_id} />
     },
     marks: {

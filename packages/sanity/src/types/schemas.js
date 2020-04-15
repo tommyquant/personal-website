@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import author from './documents/author';
 import post from './documents/post';
 
+import imageExtended from './objects/image-extended';
 import youtube from './objects/youtube';
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -19,6 +20,7 @@ export default createSchema({
         author,
         post,
 
+        imageExtended,
         youtube
     ])
 });

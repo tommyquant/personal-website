@@ -26,6 +26,7 @@ const ResponsiveImg = ({
     center,
     srcsetOptions = {},
     fallbackSrc,
+    alt,
     ...htmlAttributes
 }) => {
     const wrapperRef = useRef();
@@ -65,6 +66,7 @@ const ResponsiveImg = ({
                 srcSet={getSrcsetFromOptions(srcsetOptions) || null}
                 sizes={`${width}px`}
                 src={fallbackSrc}
+                alt={alt}
             />
         </ImageWrapper>
     );
@@ -74,7 +76,8 @@ ResponsiveImg.propTypes = {
     className: PropTypes.string,
     center: PropTypes.bool,
     srcsetOptions: PropTypes.object,
-    fallbackSrc: PropTypes.string
+    fallbackSrc: PropTypes.string,
+    alt: PropTypes.string
 };
 
 export default ResponsiveImg;
