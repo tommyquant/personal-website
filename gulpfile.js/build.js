@@ -72,6 +72,7 @@ function createNetlifyRedirects(cb) {
     });
 
     console.log(`Creating redirects file`);
+    console.log(redirects.join('\n'));
     fs.writeFileSync(path.resolve(BUILD_FOLDER_NAME, '_redirects'), redirects.join('\n'));
 
     cb();
