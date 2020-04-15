@@ -62,7 +62,7 @@ const Home = () => {
                     <PostCard
                         key={slug.current}
                         forwardedAs={StyledLink}
-                        to={`posts/${slug.current}`}
+                        to={`/posts/${slug.current}`}
                     >
                         <PostCard.Header>
                             <PostCard.Header.Image
