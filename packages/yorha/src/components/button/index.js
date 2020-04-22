@@ -42,11 +42,11 @@ const nonInteractiveStyles = css`
     padding: 0.2em 0.3em;
     position: relative;
 
-    ${({center}) => center && css`
+    ${({$center}) => $center && css`
         justify-content: center;
     `}
 
-    ${({fluid}) => fluid ? css`
+    ${({$fluid}) => $fluid ? css`
         width: 100%;
     ` : css`
         min-width: 8em;
@@ -101,7 +101,7 @@ const interactiveStyles = css`
         ${activeStyles}
     }
 
-    ${({active}) => active ? css`
+    ${({$active}) => $active ? css`
         ${activeStyles}
     ` : css`
         &:not(:active):focus,
@@ -166,9 +166,9 @@ const Button = React.forwardRef(({
             ref={ref}
             href={!disabled && href}
             onClick={!disabled && onClick}
-            active={active}
-            center={center}
-            fluid={fluid}
+            $active={active}
+            $center={center}
+            $fluid={fluid}
             {...htmlAttributes}
         >
             <Content>
