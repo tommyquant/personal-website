@@ -72,6 +72,7 @@ PostHeader.Title = PostHeaderTitle;
 
 const StyledCard = styled(Card)`
     font-family: ${fontFamily};
+    height: 100%;
     line-height: ${lineHeight};
 
     &:focus,

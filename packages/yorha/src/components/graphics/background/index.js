@@ -31,7 +31,7 @@ const centeredStyles = css`
 `;
 
 const Circles = styled.div`
-    border: ${LINE_WIDTH} solid ${({color}) => color};
+    border: ${LINE_WIDTH} solid ${({$color}) => $color};
     border-radius: 99999px;
     height: 50vw;
     position: relative;
@@ -39,7 +39,7 @@ const Circles = styled.div`
 
     &::before {
         animation: ${innerCircleScaleAnim} 10s ease-in-out infinite;
-        border: ${LINE_WIDTH} solid ${({color}) => color};
+        border: ${LINE_WIDTH} solid ${({$color}) => $color};
         border-radius: 99999px;
         content: '';
 
@@ -48,12 +48,12 @@ const Circles = styled.div`
 `;
 
 const lineCommonStyles = css`
-    background-color: ${({color}) => color};
+    background-color: ${({$color}) => $color};
     height: ${LINE_WIDTH};
 `;
 
 const Lines = styled.div`
-    background-color: ${({color}) => color};
+    background-color: ${({$color}) => $color};
     height: ${LINE_WIDTH};
     width: 250%;
 
@@ -107,13 +107,13 @@ const Background = ({
     return (
         <Container className={className} {...htmlAttributes}>
             <LeftGraphic>
-                <Circles color={color}>
-                    <Lines color={color} />
+                <Circles $color={color}>
+                    <Lines $color={color} />
                 </Circles>
             </LeftGraphic>
             <RightGraphic>
-                <Circles color={color}>
-                    <Lines color={color} />
+                <Circles $color={color}>
+                    <Lines $color={color} />
                 </Circles>
             </RightGraphic>
         </Container>
