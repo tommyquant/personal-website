@@ -7,7 +7,7 @@ import {taupeGray} from '../../../common/style/palette';
 const DEFAULT_COLOR = taupeGray;
 
 export const baseStyles = css`
-    border: solid ${({color}) => color || DEFAULT_COLOR};
+    border: solid ${({$color}) => $color || DEFAULT_COLOR};
     border-width: 0 0.15em 0 0.6em;
     box-sizing: border-box;
     font-size: 1.3em;
@@ -24,7 +24,7 @@ const DoubleBarLine = ({
     color = DEFAULT_COLOR,
     ...htmlAttributes
 }) => (
-    <Graphic className={className} color={color} {...htmlAttributes} />
+    <Graphic className={className} $color={color} {...htmlAttributes} />
 );
 
 DoubleBarLine.propTypes = {

@@ -18,7 +18,10 @@ export default {
 };
 
 export const card = () => (
-    <StyledCard shadow={boolean('Has shadow?', true)}>
+    <StyledCard
+        shadow={boolean('Has shadow?', true)}
+        shadowWhenFocusHover={boolean('Has shadow when focused or hovered?', false)}
+    >
         I am a styled card
     </StyledCard>
 );

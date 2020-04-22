@@ -11,7 +11,7 @@
     "polished": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.0.1",
+    "styled-components": "5.1.0",
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "eslint-plugin-react": "^7.19.0",
     "resize-observer-polyfill": "^1.5.1",
     "string-replace-loader": "^2.3.0",
-    "stylelint": "^13.2.1",
+    "stylelint": "^13.3.3",
     "stylelint-order": "^4.0.0"
   }
 }

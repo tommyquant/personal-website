@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {Match} from '@reach/router';
+import {Link} from 'gatsby';
 
 import {softAmber} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
@@ -15,6 +17,11 @@ import {
 } from '../../common/style/constants';
 
 import GlobalStyle from './global-styles';
+
+const ROUTES = [
+    {label: 'Home', to: '/'},
+    {label: 'About', to: '/about'}
+];
 
 const StyledMain = styled.main`
     display: grid;
@@ -50,6 +57,7 @@ const Navigation = styled.nav`
 `;
 
 const StyledButton = styled(Button)`
+    text-decoration: none;
     text-transform: uppercase;
 `;
 
@@ -74,7 +82,7 @@ const StyledFooter = styled.footer`
 const RootPageWrapper = ({element}) => (
     <React.Fragment>
         <GlobalStyle />
-        
+
         <StyledMain>
             <FixedWrapper style={{zIndex: -1}}>
                 <Background />
@@ -86,9 +94,19 @@ const RootPageWrapper = ({element}) => (
             <StyledHeader>
                 <Navigation>
                     <DoubleBarLine />
-                    <StyledButton isActive={true}>Home</StyledButton>
-                    <StyledButton>About</StyledButton>
-                    <StyledButton>Settings</StyledButton>
+                    {ROUTES.map(({label, to}) => (
+                        <Match key={to} path={to}>
+                            {({match}) => (
+                                <StyledButton
+                                    forwardedAs={Link}
+                                    to={to}
+                                    active={!!match}
+                                >
+                                    {label}
+                                </StyledButton>
+                            )}
+                        </Match>
+                    ))}
                 </Navigation>
                 <StyledPageDivider />
             </StyledHeader>
@@ -96,7 +114,7 @@ const RootPageWrapper = ({element}) => (
             <Content>
                 {element}
             </Content>
-            
+
             <StyledFooter>
                 <StyledPageDivider />
             </StyledFooter>

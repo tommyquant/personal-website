@@ -14,10 +14,10 @@ const Wrapper = styled.div`
     background-color: ${tana};
     transition: ${transition('box-shadow')};
 
-    ${({shadow}) => shadow ? css`
+    ${({$shadow}) => $shadow ? css`
         ${shadowStyles}
     ` : css`
-        ${({shadowWhenFocusHover}) => shadowWhenFocusHover && css`
+        ${({$shadowWhenFocusHover}) => $shadowWhenFocusHover && css`
             &:focus,
             &:hover {
                 ${shadowStyles}
@@ -35,8 +35,8 @@ const Card = ({
 }) => (
     <Wrapper
         className={className}
-        shadow={shadow}
-        shadowWhenFocusHover={shadowWhenFocusHover}
+        $shadow={shadow}
+        $shadowWhenFocusHover={shadowWhenFocusHover}
         {...htmlAttributes}
     >
         {children}
