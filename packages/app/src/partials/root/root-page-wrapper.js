@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {Match} from '@reach/router';
 import {Link} from 'gatsby';
+import {rgba} from 'polished';
 
-import {softAmber} from 'yorha/src/common/style/palette';
+import {fontFamily} from 'yorha/src/common/style/font';
+import {fuscousGray, softAmber} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
 import Button from 'yorha/src/components/button';
 import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
@@ -67,9 +69,34 @@ const StyledPageDivider = styled(PageDivider)`
 
 const Content = styled.section`
     box-sizing: border-box;
-    display: flex;
-    grid-area: content;
+    display: grid;
+    grid-template-areas:
+        'title'
+        'main-content';
+    grid-template-rows: min-content 1fr;
     padding: 1.5rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
+    width: 100%;
+`;
+
+const PageTitle = styled.h1`
+    color: ${fuscousGray};
+    font-family: ${fontFamily};
+    font-size: 2.8rem;
+    font-weight: normal;
+    grid-area: title;
+    letter-spacing: 0.1em;
+    margin: 0 0 1em;
+    text-shadow: 0.15em 0.15em 0 ${rgba(fuscousGray, 0.25)};
+    text-transform: uppercase;
+`;
+
+const MainContent = styled.div`
+    align-content: center;
+    display: grid;
+    grid-area: main-content;
+    grid-auto-rows: min-content;
+    grid-gap: 2rem;
+    grid-template-columns: min-content 1fr;
     width: 100%;
 `;
 
@@ -112,7 +139,11 @@ const RootPageWrapper = ({element}) => (
             </StyledHeader>
 
             <Content>
-                {element}
+                <PageTitle>Page title goes here</PageTitle>
+                <MainContent>
+                    <DoubleBarLine />
+                    {element}
+                </MainContent>
             </Content>
 
             <StyledFooter>

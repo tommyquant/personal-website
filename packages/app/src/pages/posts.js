@@ -2,7 +2,7 @@ import React from 'react';
 import {Router} from '@reach/router';
 
 import Home from './';
-import Post from '../widgets/post';
+import Post from '../partials/post';
 
 const Posts = () => {
     return (
