@@ -12,7 +12,8 @@ const StyledSvg = styled.svg`
 
 const Overlay = ({
     className,
-    color = rgba(fuscousGray, 0.05),
+    color,
+    gridOpacity = 0.05,
     vignetteOpacity = 0.35,
     ...htmlAttributes
 }) => {
@@ -28,7 +29,7 @@ const Overlay = ({
                     height="10"
                     patternTransform="scale(0.65)"
                     patternUnits="userSpaceOnUse"
-                    fill={color}
+                    fill={rgba(color, gridOpacity)}
                 >
                     <rect width="10" height="2" />
                     <rect width="2" height="10" />
@@ -51,6 +52,7 @@ const Overlay = ({
 Overlay.propTypes = {
     className: PropTypes.string,
     color: PropTypes.string,
+    gridOpacity: PropTypes.number,
     vignetteOpacity: PropTypes.number
 };
 

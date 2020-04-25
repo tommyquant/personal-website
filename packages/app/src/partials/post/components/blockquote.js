@@ -2,21 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {baseStyles as doubleBarLineBaseStyles} from 'yorha/src/components/graphics/double-bar-line';
+import {taupeGray} from 'yorha/src/common/style/palette';
+import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 
 const StyledBlockquote = styled.blockquote`
+    display: grid;
+    grid-gap: 1.5em;
+    grid-template-columns: min-content 1fr;
     margin: 0;
-    padding: 0 2.5em;
-    position: relative;
-
-    &::before {
-        ${doubleBarLineBaseStyles}
-
-        content: '';
-        left: 0;
-        position: absolute;
-        top: 0;
-    }
 `;
 
 const Blockquote = ({
@@ -26,7 +19,10 @@ const Blockquote = ({
 }) => {
     return (
         <StyledBlockquote className={className} {...htmlAttributes}>
-            {children}
+            <DoubleBarLine color={taupeGray} aria-hidden="true" />
+            <div>
+                {children}
+            </div>
         </StyledBlockquote>
     );
 };

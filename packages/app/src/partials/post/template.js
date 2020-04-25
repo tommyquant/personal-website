@@ -8,7 +8,10 @@ import {fontFamily, lineHeight} from 'yorha/src/common/style/font';
 import Card from 'yorha/src/components/card';
 
 import {getSrcsetOptions} from '../../common/sanity-image';
+import Content from '../../components/content';
 import ResponsiveImg from '../../components/responsive-img';
+import SEO from '../../partials/seo';
+
 import serializers from './serializers';
 
 const StyledCard = styled(Card)`
@@ -19,6 +22,7 @@ const StyledCard = styled(Card)`
     margin: 0 auto;
     max-width: 768px;
     padding: 1.5em;
+    width: 100%;
 `;
 
 const PostTemplate = ({
@@ -27,25 +31,29 @@ const PostTemplate = ({
     bodyRaw
 }) => {
     return (
-        <StyledCard hasShadow={true}>
-            {!!feature_image && (
-                <ResponsiveImg
-                    center
-                    srcsetOptions={getSrcsetOptions(feature_image)}
-                    fallbackSrc={feature_image.asset.url}
-                    alt={feature_image.description}
-                />
-            )}
-            
-            {!!bodyRaw && (
-                <BlockContent
-                    projectId={process.env.GATSBY_SANITY_PROJECT_ID}
-                    dataset={process.env.GATSBY_SANITY_DATASET}
-                    blocks={bodyRaw}
-                    serializers={serializers}
-                />
-            )}
-        </StyledCard>
+        <Content heading={title}>
+            <SEO title={title} />
+
+            <StyledCard hasShadow={true}>
+                {!!feature_image && (
+                    <ResponsiveImg
+                        center
+                        srcsetOptions={getSrcsetOptions(feature_image)}
+                        fallbackSrc={feature_image.asset.url}
+                        alt={feature_image.description}
+                    />
+                )}
+                
+                {!!bodyRaw && (
+                    <BlockContent
+                        projectId={process.env.GATSBY_SANITY_PROJECT_ID}
+                        dataset={process.env.GATSBY_SANITY_DATASET}
+                        blocks={bodyRaw}
+                        serializers={serializers}
+                    />
+                )}
+            </StyledCard>
+        </Content>
     );
 };
 

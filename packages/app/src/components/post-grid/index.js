@@ -6,8 +6,11 @@ const Container = styled.div`
     display: grid;
     grid-auto-rows: max-content;
     grid-gap: 2rem 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     width: 100%;
+
+    @media only screen and (min-width: 25rem) {
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    }
 `;
 
 const PostGrid = ({

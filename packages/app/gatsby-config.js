@@ -5,10 +5,8 @@
  */
 
 module.exports = {
-    siteMetadata: {
-        title: 'Tommy Tran'
-    },
     plugins: [
+        'gatsby-plugin-react-helmet',
         {
             resolve: 'gatsby-plugin-styled-components'
         },
