@@ -25,7 +25,7 @@ const About = () => (
         <SEO title="About" />
 
         <StyledCard shadow>
-            <p>Hi, I&apos;m Tommy. I&apos;m a full stack developer.</p>
+            <p>Bio goes here</p>
         </StyledCard>
     </Content>
 );
