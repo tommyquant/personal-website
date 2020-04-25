@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 2rem 1rem;
     width: 100%;
 
     @media only screen and (min-width: 25rem) {
-        display: grid;
-        grid-auto-rows: max-content;
-        grid-gap: 2rem 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     }
 `;
 
