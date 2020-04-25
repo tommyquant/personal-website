@@ -6,7 +6,7 @@ import Post from '../partials/post';
 
 const Posts = () => {
     return (
-        <Router basepath="/posts" style={{width: '100%'}}>
+        <Router basepath="/posts" style={{height: '100%', width: '100%'}}>
             <Home path="/" />
             <Post path="/:slug" />
         </Router>
