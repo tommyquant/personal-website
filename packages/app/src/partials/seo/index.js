@@ -5,7 +5,7 @@ import {Helmet} from 'react-helmet';
 const TITLE_SUFFIX = ' — Website Title';
 
 const DEFAULTS = {
-    title: ' Website Title — Full Stack Developer'
+    title: 'Website Title'
 };
 
 const SEO = ({
