@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {css, keyframes} from 'styled-components';
 
-import {taupeGray} from '../../../common/style/palette';
-
 const LINE_WIDTH = '2px';
 
 const innerCircleScaleAnim = keyframes`
@@ -101,7 +99,7 @@ const RightGraphic = styled.div`
 
 const Background = ({
     className,
-    color = taupeGray,
+    color,
     ...htmlAttributes
 }) => {
     return (

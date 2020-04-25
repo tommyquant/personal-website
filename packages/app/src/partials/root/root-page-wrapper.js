@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {Match} from '@reach/router';
 import {Link} from 'gatsby';
-import {rgba} from 'polished';
 
-import {fontFamily} from 'yorha/src/common/style/font';
-import {fuscousGray, softAmber} from 'yorha/src/common/style/palette';
+import {fuscousGray, taupeGray, softAmber} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
-import Button from 'yorha/src/components/button';
-import DoubleBarLine from 'yorha/src/components/graphics/double-bar-line';
 import Overlay from 'yorha/src/components/graphics/overlay';
-import PageDivider from 'yorha/src/components/graphics/page-divider';
 
-import {
-    PAGE_HORIZONTAL_EDGE_SPACING,
-    PAGE_VERTICAL_EDGE_SPACING
-} from '../../common/style/constants';
+import {PAGE_HORIZONTAL_EDGE_SPACING} from '../../common/style/constants';
+import NavBar from '../../components/nav-bar';
+import PageDivider from '../../components/page-divider';
 
 import GlobalStyle from './global-styles';
 
@@ -27,10 +21,6 @@ const ROUTES = [
 
 const StyledMain = styled.main`
     display: grid;
-    grid-template-areas:
-        'header'
-        'content'
-        'footer';
     grid-template-columns: 100%;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
@@ -45,64 +35,18 @@ const FixedWrapper = styled.div`
     width: 100%;
 `;
 
-const StyledHeader = styled.header`
-    grid-area: header;
-`;
-
-const Navigation = styled.nav`
-    background-color: ${softAmber};
-    display: grid;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
-    grid-gap: 2rem;
-    padding: ${PAGE_VERTICAL_EDGE_SPACING} ${PAGE_HORIZONTAL_EDGE_SPACING} 1.2rem;
-`;
-
-const StyledButton = styled(Button)`
+const StyledLink = styled(Link)`
     text-decoration: none;
-    text-transform: uppercase;
-`;
-
-const StyledPageDivider = styled(PageDivider)`
-    padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING};
 `;
 
 const Content = styled.section`
     box-sizing: border-box;
-    display: grid;
-    grid-template-areas:
-        'title'
-        'main-content';
-    grid-template-rows: min-content 1fr;
     padding: 1.5rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
-    width: 100%;
-`;
-
-const PageTitle = styled.h1`
-    color: ${fuscousGray};
-    font-family: ${fontFamily};
-    font-size: 2.8rem;
-    font-weight: normal;
-    grid-area: title;
-    letter-spacing: 0.1em;
-    margin: 0 0 1em;
-    text-shadow: 0.15em 0.15em 0 ${rgba(fuscousGray, 0.25)};
-    text-transform: uppercase;
-`;
-
-const MainContent = styled.div`
-    align-content: center;
-    display: grid;
-    grid-area: main-content;
-    grid-auto-rows: min-content;
-    grid-gap: 2rem;
-    grid-template-columns: min-content 1fr;
     width: 100%;
 `;
 
 const StyledFooter = styled.footer`
     background-color: ${softAmber};
-    grid-area: footer;
     padding-bottom: 1.5rem;
 `;
 
@@ -112,42 +56,34 @@ const RootPageWrapper = ({element}) => (
 
         <StyledMain>
             <FixedWrapper style={{zIndex: -1}}>
-                <Background />
+                <Background color={taupeGray} />
             </FixedWrapper>
             <FixedWrapper style={{zIndex: 100}}>
-                <Overlay />
+                <Overlay color={fuscousGray} />
             </FixedWrapper>
 
-            <StyledHeader>
-                <Navigation>
-                    <DoubleBarLine />
-                    {ROUTES.map(({label, to}) => (
-                        <Match key={to} path={to}>
-                            {({match}) => (
-                                <StyledButton
-                                    forwardedAs={Link}
-                                    to={to}
-                                    active={!!match}
-                                >
-                                    {label}
-                                </StyledButton>
-                            )}
-                        </Match>
-                    ))}
-                </Navigation>
-                <StyledPageDivider />
-            </StyledHeader>
+            <NavBar>
+                {ROUTES.map(({label, to}) => (
+                    <Match key={to} path={to}>
+                        {({match}) => (
+                            <NavBar.Button
+                                forwardedAs={StyledLink}
+                                to={to}
+                                active={!!match}
+                            >
+                                {label}
+                            </NavBar.Button>
+                        )}
+                    </Match>
+                ))}
+            </NavBar>
 
             <Content>
-                <PageTitle>Page title goes here</PageTitle>
-                <MainContent>
-                    <DoubleBarLine />
-                    {element}
-                </MainContent>
+                {element}
             </Content>
 
             <StyledFooter>
-                <StyledPageDivider />
+                <PageDivider />
             </StyledFooter>
         </StyledMain>
     </React.Fragment>

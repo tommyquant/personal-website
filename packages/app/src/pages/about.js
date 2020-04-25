@@ -5,6 +5,9 @@ import {fuscousGray} from 'yorha/src/common/style/palette';
 import {fontFamily, lineHeight} from 'yorha/src/common/style/font';
 import Card from 'yorha/src/components/card';
 
+import Content from '../components/content';
+import SEO from '../partials/seo';
+
 const StyledCard = styled(Card)`
     box-sizing: border-box;
     color: ${fuscousGray};
@@ -18,9 +21,13 @@ const StyledCard = styled(Card)`
 `;
 
 const About = () => (
-    <StyledCard shadow>
-        <p>Hi, I&apos;m Tommy. I&apos;m a full stack developer.</p>
-    </StyledCard>
+    <Content heading="About">
+        <SEO title="About" />
+
+        <StyledCard shadow>
+            <p>Bio goes here</p>
+        </StyledCard>
+    </Content>
 );
 
 export default About;
