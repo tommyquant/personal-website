@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
-import {Link} from '@reach/router';
+import {Link} from 'gatsby';
 
 import {getSrcsetOptions} from '../common/sanity-image';
 import Content from '../components/content';

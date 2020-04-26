@@ -6,7 +6,7 @@ module.exports = {
             command: BUILD_SCRIPT_NAME
         },
         redirects: [
-            '/* /index.html 200'
+            '/* /404.html 404'
         ]
     },
     sanity: {
