@@ -1,3 +1,6 @@
+const path = require('path');
+const baseConfig = require('./base');
+
 const BUILD_SCRIPT_NAME = 'build';
 
 module.exports = {
@@ -6,7 +9,12 @@ module.exports = {
             command: BUILD_SCRIPT_NAME
         },
         redirects: [
-            '/* /index.html 200'
+            // Add client-only routes
+            require(`${path.resolve(baseConfig.app.directory)}/client-routes`)
+                .map((clientRoute) => {
+                    return `${clientRoute} ${clientRoute.replace('*', '')} 200`
+                }),
+            '/* /404/ 404'
         ]
     },
     sanity: {

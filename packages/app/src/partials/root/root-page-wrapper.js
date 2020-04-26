@@ -41,7 +41,7 @@ const StyledLink = styled(Link)`
 
 const Content = styled.section`
     box-sizing: border-box;
-    padding: 1.5rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
+    padding: 0.75rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
     width: 100%;
 `;
 
@@ -54,14 +54,14 @@ const RootPageWrapper = ({element}) => (
     <React.Fragment>
         <GlobalStyle />
 
-        <StyledMain>
-            <FixedWrapper style={{zIndex: -1}}>
-                <Background color={taupeGray} />
-            </FixedWrapper>
-            <FixedWrapper style={{zIndex: 100}}>
-                <Overlay color={fuscousGray} />
-            </FixedWrapper>
+        <FixedWrapper style={{zIndex: -1}}>
+            <Background color={taupeGray} />
+        </FixedWrapper>
+        <FixedWrapper style={{zIndex: 100}}>
+            <Overlay color={fuscousGray} />
+        </FixedWrapper>
 
+        <StyledMain>
             <NavBar>
                 {ROUTES.map(({label, to}) => (
                     <Match key={to} path={to}>

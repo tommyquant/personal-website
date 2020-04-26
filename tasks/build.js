@@ -8,6 +8,19 @@ const {getPackagesConfig} = require('./package-configs');
 const packagesConfig = getPackagesConfig(['build']);
 const BUILD_FOLDER_NAME = 'public';
 
+function cleanApp() {
+    const package = packagesConfig.app;
+
+    return runScript(
+        'clean',
+        package.execute.args,
+        {
+            cwd: package.directory,
+            env: package.env
+        }
+    );
+}
+
 function buildApp() {
     const package = packagesConfig.app;
 
@@ -67,7 +80,7 @@ function createNetlifyRedirects(cb) {
 
     Object.values(packagesConfig).map((package) => {
         if (Array.isArray(package.redirects)) {
-            package.redirects.map((redirect) => redirects.push(redirect));
+            package.redirects.forEach((redirect) => void redirects.push(redirect));
         }
     });
 
@@ -79,7 +92,10 @@ function createNetlifyRedirects(cb) {
 }
 
 module.exports = series(
-    buildApp,
+    series(
+        cleanApp,
+        buildApp
+    ),
     buildSanity,
     buildYorha,
     clean,
