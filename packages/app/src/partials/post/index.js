@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 
+import NotFound from '../../pages/404';
+
 import PostTemplate from './template';
 
 const GET_POST_BY_SLUG = gql`
@@ -35,6 +37,8 @@ const Post = ({
         return (
             <p>Loading?</p>
         );
+    } else if (data.allPost.length < 1) {
+        return <NotFound />;
     }
 
     return (

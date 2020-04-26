@@ -1,8 +1,4 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
+const clientRoutes = require('./client-routes');
 
 module.exports = {
     plugins: [
@@ -12,7 +8,7 @@ module.exports = {
         },
         {
             resolve: 'gatsby-plugin-create-client-paths',
-            options: {prefixes: ['/posts/*']},
+            options: {prefixes: clientRoutes},
         }
     ]
 };

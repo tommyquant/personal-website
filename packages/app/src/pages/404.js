@@ -20,14 +20,14 @@ const StyledCard = styled(Card)`
     width: 100%;
 `;
 
-const About = () => (
-    <Content heading="About">
-        <SEO title="About" />
+const NotFound = () => (
+    <Content heading="Not Found">
+        <SEO title="Not Found" />
 
         <StyledCard shadow>
-            <span>Bio goes here</span>
+            <span>Page could not be found.</span>
         </StyledCard>
     </Content>
 );
 
-export default About;
+export default NotFound;
