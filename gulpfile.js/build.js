@@ -67,7 +67,7 @@ function createNetlifyRedirects(cb) {
 
     Object.values(packagesConfig).map((package) => {
         if (Array.isArray(package.redirects)) {
-            package.redirects.map((redirect) => redirects.push(redirect));
+            package.redirects.forEach((redirect) => void redirects.push(redirect));
         }
     });
 
