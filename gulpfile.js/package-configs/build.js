@@ -13,7 +13,7 @@ module.exports = {
             // Add client-only routes
             require(`${path.resolve(baseConfig.app.directory)}/client-routes`)
                 .map((clientRoute) => {
-                    return `${clientRoute} ${clientRoute.replace('*', 'index.html')} 200`
+                    return `${clientRoute} /index.html 200`
                 })
         ]
     },
