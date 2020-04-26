@@ -9,12 +9,12 @@ module.exports = {
             command: BUILD_SCRIPT_NAME
         },
         redirects: [
-            '/* /404.html 404',
             // Add client-only routes
             require(`${path.resolve(baseConfig.app.directory)}/client-routes`)
                 .map((clientRoute) => {
-                    return `${clientRoute} /index.html 200`
-                })
+                    return `${clientRoute} ${clientRoute.replace('*', '')} 200`
+                }),
+            '/* /404/ 404'
         ]
     },
     sanity: {
