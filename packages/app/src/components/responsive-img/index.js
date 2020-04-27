@@ -33,6 +33,8 @@ const ResponsiveImg = ({
     const imageRef = useRef();
     const [width, setWidth] = useState(0);
 
+    const srcset = getSrcsetFromOptions(srcsetOptions);
+
     const throttledOnResize = throttle((entry) => {
         const wrapperWidth = entry.contentRect.width;
         const srcsetOptionsKeys = Object.keys(srcsetOptions);
@@ -63,9 +65,9 @@ const ResponsiveImg = ({
         >
             <StyledImg
                 ref={imageRef}
-                srcSet={getSrcsetFromOptions(srcsetOptions) || null}
+                srcSet={(width && srcset) ? srcset : null}
                 sizes={`${width}px`}
-                src={fallbackSrc}
+                src={width ? fallbackSrc : null}
                 alt={alt}
             />
         </ImageWrapper>
