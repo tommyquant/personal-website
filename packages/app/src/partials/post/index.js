@@ -5,6 +5,7 @@ import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 
 import NotFound from '../../pages/404';
+import PageLoader from '../../components/page-loader';
 
 import PostTemplate from './template';
 
@@ -33,11 +34,11 @@ const Post = ({
         }
     });
 
-    if (loading || error || !Array.isArray(data.allPost)) {
-        return (
-            <p>Loading?</p>
-        );
-    } else if (data.allPost.length < 1) {
+    if (loading) return <PageLoader />;
+
+    if (error || !Array.isArray(data.allPost)) return <p>Error :(</p>;
+        
+    if (data.allPost.length < 1) {
         return <NotFound />;
     }
 
