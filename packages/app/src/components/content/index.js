@@ -40,7 +40,7 @@ const StyledLeftDoubleBarLine = styled(LeftDoubleBarLine)`
     margin-right: 2rem;
 `;
 
-const ContentArea = ({
+const Content = ({
     children,
     className,
     heading,
@@ -60,10 +60,10 @@ const ContentArea = ({
     );
 };
 
-ContentArea.propTypes = {
+Content.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     heading: PropTypes.string
 };
 
-export default ContentArea;
+export default Content;

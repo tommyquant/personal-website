@@ -13,6 +13,7 @@ import NavBar from '../../components/nav-bar';
 import PageDivider from '../../components/page-divider';
 
 import GlobalStyle from './global-styles';
+import SEO from '../seo';
 
 const ROUTES = [
     {label: 'Home', to: '/'},
@@ -53,6 +54,8 @@ const StyledFooter = styled.footer`
 const RootPageWrapper = ({element}) => (
     <React.Fragment>
         <GlobalStyle />
+
+        <SEO />
 
         <FixedWrapper style={{zIndex: -1}}>
             <Background color={taupeGray} />

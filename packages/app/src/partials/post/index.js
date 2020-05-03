@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 
+import ContentLoader from '../../components/content-loader';
+import ContentError from '../../components/content-error';
 import NotFound from '../../pages/404';
-import PageLoader from '../../components/page-loader';
 
 import PostTemplate from './template';
 
@@ -34,13 +35,11 @@ const Post = ({
         }
     });
 
-    if (loading) return <PageLoader />;
+    if (loading) return <ContentLoader />;
 
-    if (error || !Array.isArray(data.allPost)) return <p>Error :(</p>;
+    if (error) return <ContentError />;
         
-    if (data.allPost.length < 1) {
-        return <NotFound />;
-    }
+    if (data.allPost.length < 1) return <NotFound />;
 
     return (
         <PostTemplate {...data.allPost[0]} />
