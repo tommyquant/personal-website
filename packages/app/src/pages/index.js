@@ -41,7 +41,7 @@ const Home = () => {
 
     if (loading) return <ContentLoader />;
 
-    if (error) return <ContentError>{error}</ContentError>;
+    if (error) return <ContentError />;
 
     return (
         <Content heading="Projects">

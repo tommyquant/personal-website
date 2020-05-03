@@ -37,7 +37,7 @@ const Post = ({
 
     if (loading) return <ContentLoader />;
 
-    if (error) return <ContentError>{error}</ContentError>;
+    if (error) return <ContentError />;
         
     if (data.allPost.length < 1) return <NotFound />;
 
