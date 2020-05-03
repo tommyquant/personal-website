@@ -6,7 +6,8 @@ import {Link} from 'gatsby';
 
 import {getSrcsetOptions} from '../common/sanity-image';
 import Content from '../components/content';
-import PageLoader from '../components/page-loader';
+import ContentLoader from '../components/content-loader';
+import ContentError from '../components/content-error';
 import PostGrid from '../components/post-grid';
 import PostCard from '../components/post-card';
 import SEO from '../partials/seo';
@@ -38,16 +39,16 @@ const query = gql`
 const Home = () => {
     const {loading, error, data} = useQuery(query);
 
-    if (loading) return <PageLoader />;
-    
-    if (error) return <p>Error :(</p>;
+    if (loading) return <ContentLoader />;
+
+    if (error) return <ContentError />;
 
     return (
         <Content heading="Projects">
             <SEO />
 
             <PostGrid>
-                {!!data.allPost && data.allPost.map(({
+                {Array.isArray(data.allPost) && data.allPost.map(({
                     title,
                     slug,
                     feature_image,

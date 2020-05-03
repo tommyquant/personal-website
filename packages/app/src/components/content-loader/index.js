@@ -17,7 +17,7 @@ const StyledLoader = styled(Loader)`
     height: 5rem;
 `;
 
-const PageLoader = ({
+const ContentLoader = ({
     children,
     className,
     ...htmlAttributes
@@ -30,9 +30,9 @@ const PageLoader = ({
     );
 };
 
-PageLoader.propTypes = {
+ContentLoader.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string
 };
 
-export default PageLoader;
+export default ContentLoader;
