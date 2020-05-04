@@ -21,13 +21,17 @@ const OuterWrapper = styled.div`
 const PageHeading = styled.h1`
     color: ${fuscousGray};
     font-family: ${fontFamily};
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     font-weight: normal;
     grid-area: title;
     letter-spacing: 0.1em;
     margin: 0 0 1em;
     text-shadow: 0.15em 0.15em 0 ${rgba(fuscousGray, 0.25)};
     text-transform: uppercase;
+
+    @media only screen and (min-width: 40rem) {
+        font-size: 2.8rem;
+    }
 `;
 
 const InnerWrapper = styled.div`
