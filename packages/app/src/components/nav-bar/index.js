@@ -4,29 +4,26 @@ import styled from 'styled-components';
 
 import {softAmber} from 'yorha/src/common/style/palette';
 import Button from 'yorha/src/components/button';
-import PageDivider from 'yorha/src/components/graphics/page-divider';
 
-import {
-    PAGE_HORIZONTAL_EDGE_SPACING,
-    PAGE_VERTICAL_EDGE_SPACING
-} from '../../common/style/constants';
 import LeftDoubleBarLine from '../../components/left-double-bar-line';
+import PageDivider from '../../components/page-divider';
 
 const Navigation = styled.nav`
     background-color: ${softAmber};
     display: grid;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
-    grid-gap: 2rem;
-    padding: ${PAGE_VERTICAL_EDGE_SPACING} ${PAGE_HORIZONTAL_EDGE_SPACING} 1.2rem;
+    grid-auto-rows: max-content;
+    grid-gap: 1rem;
+    padding: var(--page-vertical-margin) var(--page-horizontal-margin) 1.2rem;
+
+    @media only screen and (min-width: 30rem) {
+        grid-auto-columns: max-content;
+        grid-auto-flow: column;
+        grid-gap: 2rem;
+    }
 `;
 
 const StyledButton = styled(Button)`
     text-transform: uppercase;
-`;
-
-const StyledPageDivider = styled(PageDivider)`
-    padding: 0 ${PAGE_HORIZONTAL_EDGE_SPACING};
 `;
 
 const NavBar = ({
@@ -40,7 +37,7 @@ const NavBar = ({
                 <LeftDoubleBarLine />
                 {children}
             </Navigation>
-            <StyledPageDivider />
+            <PageDivider />
         </header>
     );
 };

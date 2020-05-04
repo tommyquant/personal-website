@@ -8,7 +8,6 @@ import {fuscousGray, taupeGray, softAmber} from 'yorha/src/common/style/palette'
 import Background from 'yorha/src/components/graphics/background';
 import Overlay from 'yorha/src/components/graphics/overlay';
 
-import {PAGE_HORIZONTAL_EDGE_SPACING} from '../../common/style/constants';
 import NavBar from '../../components/nav-bar';
 import PageDivider from '../../components/page-divider';
 
@@ -42,13 +41,13 @@ const StyledLink = styled(Link)`
 
 const Content = styled.section`
     box-sizing: border-box;
-    padding: 0.75rem ${PAGE_HORIZONTAL_EDGE_SPACING} 2rem;
+    padding: 0.75rem var(--page-horizontal-margin) 2rem;
     width: 100%;
 `;
 
 const StyledFooter = styled.footer`
     background-color: ${softAmber};
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--page-vertical-margin);
 `;
 
 const RootPageWrapper = ({element}) => (
