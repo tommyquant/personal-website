@@ -21,8 +21,12 @@ const StyledCard = styled(Card)`
     line-height: ${lineHeight};
     margin: 0 auto;
     max-width: 768px;
-    padding: 1.5em;
+    padding: 0.75em;
     width: 100%;
+
+    @media only screen and (min-width: 40rem) {
+        padding: 1.5em;
+    }
 `;
 
 const PostTemplate = ({
