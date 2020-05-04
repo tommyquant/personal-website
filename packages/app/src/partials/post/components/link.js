@@ -6,6 +6,11 @@ import {chestnutRose} from 'yorha/src/common/style/palette';
 
 const StyledLink = styled.a`
     color: ${chestnutRose};
+
+    &:focus,
+    &:hover {
+        text-decoration: none;
+    }
 `;
 
 const Link = ({

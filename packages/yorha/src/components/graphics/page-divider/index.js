@@ -82,7 +82,7 @@ const PageDivider = ({
             context.fillStyle = color;
             context.fill();
         }
-    });
+    }, 250);
 
     // Observe the container width so we can recalculate how much the pattern should repeat
     useEffect(() => {

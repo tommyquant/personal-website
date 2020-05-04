@@ -8,7 +8,13 @@ import {athsSpecial} from 'yorha/src/common/style/palette';
 
 const StyledPre = styled.pre`
     line-height: 1.25em;
+    overflow: scroll;
     padding: 0.5em;
+`;
+
+const Line = styled.div`
+    max-width: 0;
+    width: 100%;
 `;
 
 const SyntaxHighlighter = ({
@@ -33,11 +39,11 @@ const SyntaxHighlighter = ({
                     {...htmlAttributes}
                 >
                     {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({line, key: i})}>
+                        <Line key={i} {...getLineProps({line, key: i})}>
                             {line.map((token, key) => (
                                 <span key={key} {...getTokenProps({token, key})} />
                             ))}
-                        </div>
+                        </Line>
                     ))}
                 </StyledPre>
             )}
