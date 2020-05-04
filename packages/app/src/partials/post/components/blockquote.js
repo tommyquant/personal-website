@@ -14,11 +14,10 @@ const StyledBlockquote = styled.blockquote`
 
 const Blockquote = ({
     children,
-    className,
     ...htmlAttributes
 }) => {
     return (
-        <StyledBlockquote className={className} {...htmlAttributes}>
+        <StyledBlockquote {...htmlAttributes}>
             <DoubleBarLine color={taupeGray} aria-hidden="true" />
             <div>
                 {children}
@@ -29,7 +28,6 @@ const Blockquote = ({
 
 Blockquote.propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string
 };
 
 export default Blockquote;

@@ -10,12 +10,10 @@ const StyledLink = styled.a`
 
 const Link = ({
     children,
-    className,
     ...htmlAttributes
 }) => {
     return (
         <StyledLink
-            className={className}
             rel="noopener noreferrer"
             target="_blank"
             {...htmlAttributes}
