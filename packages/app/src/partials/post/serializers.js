@@ -2,13 +2,13 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import {getImageUrl, getSrcsetOptions} from '../../common/sanity-image';
 import ResponsiveImg from '../../components/responsive-img';
 
 import Blockquote from './components/blockquote';
 import Link from './components/link';
+import SyntaxHighlighter from './components/syntax-highlighter';
 import Youtube from './components/youtube';
 
 const BlockRenderer = (props) => {
@@ -27,16 +27,19 @@ const BlockRenderer = (props) => {
 const serializers = {
     types: {
         block: BlockRenderer,
-        image_extended: ({node}) => (<ResponsiveImg
-            center
-            srcsetOptions={getSrcsetOptions(node)}
-            fallbackSrc={getImageUrl(node)}
-            alt={node.description}
-        />),
+        image_extended: ({node}) => (
+            <ResponsiveImg
+                center
+                srcsetOptions={getSrcsetOptions(node)}
+                fallbackSrc={getImageUrl(node)}
+                alt={node.description}
+            />
+        ),
+        syntax_highlighter: ({node}) => <SyntaxHighlighter language={node.language}>{node.code}</SyntaxHighlighter>,
         youtube: ({node}) => <Youtube videoId={node.video_id} />
     },
     marks: {
-        code: (props) => <SyntaxHighlighter>{props.children}</SyntaxHighlighter>,
+        code: ({children}) => <code>{children}</code>,
         link: ({children, mark}) => <Link href={mark.href}>{children}</Link>
     }
 };
