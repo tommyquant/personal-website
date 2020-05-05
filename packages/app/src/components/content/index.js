@@ -5,6 +5,7 @@ import {rgba} from 'polished';
 
 import {fontFamily} from 'yorha/src/common/style/font';
 import {fuscousGray} from 'yorha/src/common/style/palette';
+import AnimatedText from 'yorha/src/components/animated-text';
 
 import LeftDoubleBarLine from '../left-double-bar-line';
 
@@ -53,7 +54,11 @@ const Content = ({
     return (
         <OuterWrapper className={className} {...htmlAttributes}>
             {!!heading && (
-                <PageHeading>{heading}</PageHeading>
+                <PageHeading>
+                    <AnimatedText>
+                        {heading}
+                    </AnimatedText>
+                </PageHeading>
             )}
             
             <InnerWrapper>

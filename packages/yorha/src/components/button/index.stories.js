@@ -20,4 +20,3 @@ export const button = () => (
         {text('Text', 'Button')}
     </Button>
 );
-

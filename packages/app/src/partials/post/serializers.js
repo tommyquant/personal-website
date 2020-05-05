@@ -3,12 +3,13 @@
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 
+import Blockquote from 'yorha/src/components/blockquote';
+
 import {getImageUrl, getSrcsetOptions} from '../../common/sanity-image';
 import ResponsiveImg from '../../components/responsive-img';
+import SyntaxHighlighter from '../../components/syntax-highlighter';
 
-import Blockquote from './components/blockquote';
 import Link from './components/link';
-import SyntaxHighlighter from './components/syntax-highlighter';
 import Youtube from './components/youtube';
 
 const BlockRenderer = (props) => {
