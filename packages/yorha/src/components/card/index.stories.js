@@ -25,4 +25,3 @@ export const card = () => (
         I am a styled card
     </StyledCard>
 );
-
