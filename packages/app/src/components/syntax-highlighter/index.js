@@ -8,7 +8,7 @@ import {athsSpecial} from 'yorha/src/common/style/palette';
 
 const StyledPre = styled.pre`
     line-height: 1.25em;
-    overflow: scroll;
+    overflow: auto;
     padding: 0.5em;
 `;
 

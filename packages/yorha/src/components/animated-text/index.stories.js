@@ -24,4 +24,3 @@ export const animatedText = () => (
         <b>I am not animated.</b>
     </p>
 );
-
