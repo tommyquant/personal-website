@@ -1,5 +1,5 @@
 import React from 'react';
-import {number, text} from '@storybook/addon-knobs';
+import {boolean, number, text} from '@storybook/addon-knobs';
 
 import {fontFamily, lineHeight} from '../../common/style/font';
 
@@ -11,11 +11,17 @@ export default {
 
 export const animatedText = () => (
     <p style={{fontFamily: fontFamily, lineHeight: lineHeight}}>
-        <span>I am not animated. </span>
+        <b>I am not animated. </b>
 
-        <AnimatedText interval={number('Duration (ms)', 16)}>
-            {text('Text', 'I am animated.')}
+        <AnimatedText
+            charactersPerSecond={number('Characters per second', 60)}
+            textCursor={text('Text cursor', '|')}
+            useRandomCharacterAsCursor={boolean('Use random character as text cursor', true)}
+        >
+            {text('Text', 'I am animated. ')}
         </AnimatedText>
+
+        <b>I am not animated.</b>
     </p>
 );
 
