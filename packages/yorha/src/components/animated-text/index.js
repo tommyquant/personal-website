@@ -26,14 +26,10 @@ const VisibleText = styled.span`
     width: 100%;
 `;
 
-const CursorWrapper = styled.span`
-    display: inline-block;
-    height: 100%;
-    position: relative;
-`;
-
 const Cursor = styled.span`
-    position: absolute;
+    display: inline-block;
+    position: relative;
+    width: 0;
 `;
 
 function getRandomCharacterInString(input) {
@@ -111,11 +107,9 @@ const AnimatedText = ({
 
             <VisibleText aria-hidden="true" $visible={isAnimating.current}>
                 {visibleText}
-                <CursorWrapper>
-                    <Cursor>
-                        {useRandomCharacterAsCursor ? getRandomCharacterInString(children) : textCursor}
-                    </Cursor>
-                </CursorWrapper>
+                <Cursor>
+                    {useRandomCharacterAsCursor ? getRandomCharacterInString(children) : textCursor}
+                </Cursor>
             </VisibleText>
         </TextWrapper>
     );
