@@ -11,7 +11,6 @@ export default {
 export const button = () => (
     <Button
         disabled={boolean('Is disabled?', false)}
-        href={text('Link to')}
         onClick={action('Button clicked')}
         active={boolean('Is active?', false)}
         center={boolean('Is content centered?', false)}

@@ -31,6 +31,7 @@ const activeStyles = css`
 `;
 
 const nonInteractiveStyles = css`
+    appearance: none;
     background-color: ${taupeGray};
     border: 0;
     box-sizing: border-box;
@@ -39,8 +40,10 @@ const nonInteractiveStyles = css`
     font-family: ${fontFamily};
     font-size: 1.5rem;
     letter-spacing: 0.05em;
+    outline: none;
     padding: 0.2em 0.3em;
     position: relative;
+    text-align: left;
 
     ${({$center}) => $center && css`
         justify-content: center;
@@ -111,20 +114,9 @@ const interactiveStyles = css`
     `}
 `;
 
-const StyledButton = styled.button.attrs(() => ({
-    type: 'button'
-}))`
+const StyledButton = styled.button`
     ${nonInteractiveStyles}
     ${interactiveStyles}
-    appearance: none;
-    outline: none;
-    text-align: left;
-`;
-
-const StyledLink = styled.a`
-    ${nonInteractiveStyles}
-    ${interactiveStyles}
-    text-decoration: none;
 `;
 
 const DisabledElement = styled.div`
@@ -142,7 +134,6 @@ const Button = React.forwardRef(({
     children,
     className,
     disabled,
-    href,
     onClick,
 
     active,
@@ -150,21 +141,12 @@ const Button = React.forwardRef(({
     fluid,
     ...htmlAttributes
 }, ref) => {
-    let StyledElement;
-
-    if (disabled) {
-        StyledElement = DisabledElement;
-    } else if (href) {
-        StyledElement = StyledLink;
-    } else {
-        StyledElement = StyledButton;
-    }
+    const StyledElement = disabled ? DisabledElement : StyledButton;
 
     return (
         <StyledElement
             className={className}
             ref={ref}
-            href={!disabled && href}
             onClick={!disabled && onClick}
             $active={active}
             $center={center}
@@ -182,7 +164,6 @@ Button.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    href: PropTypes.string,
     onClick: PropTypes.func,
     
     active: PropTypes.bool,
