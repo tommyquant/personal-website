@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs-extra');
 const path = require('path');
 const {series} = require('gulp');
@@ -9,67 +10,67 @@ const packagesConfig = getPackagesConfig(['build']);
 const BUILD_FOLDER_NAME = 'public';
 
 function cleanApp() {
-    const package = packagesConfig.app;
+    const packageConfig = packagesConfig.app;
 
     return runScript(
         'clean',
-        package.execute.args,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 function buildApp() {
-    const package = packagesConfig.app;
+    const packageConfig = packagesConfig.app;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 function buildSanity() {
-    const package = packagesConfig.sanity;
+    const packageConfig = packagesConfig.sanity;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 function buildYorha() {
-    const package = packagesConfig.yorha;
+    const packageConfig = packagesConfig.yorha;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 async function clean() {
-    console.log(`Removing previous build folder: ${BUILD_FOLDER_NAME}`)
+    console.log(`Removing previous build folder: ${BUILD_FOLDER_NAME}`);
     return fs.remove(BUILD_FOLDER_NAME);
 }
 
 function copyArtifacts(cb) {
-    Object.values(packagesConfig).map((package) => {
-        console.log(`Copying artifacts from ${path.join(package.directory, BUILD_FOLDER_NAME)} to ${BUILD_FOLDER_NAME}`);
+    Object.values(packagesConfig).map((packageConfig) => {
+        console.log(`Copying artifacts from ${path.join(packageConfig.directory, BUILD_FOLDER_NAME)} to ${BUILD_FOLDER_NAME}`);
 
-        fs.copySync(path.resolve(package.directory, BUILD_FOLDER_NAME), BUILD_FOLDER_NAME);
+        fs.copySync(path.resolve(packageConfig.directory, BUILD_FOLDER_NAME), BUILD_FOLDER_NAME);
     });
 
     cb();
@@ -78,13 +79,13 @@ function copyArtifacts(cb) {
 function createNetlifyRedirects(cb) {
     const redirects = [];
 
-    Object.values(packagesConfig).map((package) => {
-        if (Array.isArray(package.redirects)) {
-            package.redirects.forEach((redirect) => void redirects.push(redirect));
+    Object.values(packagesConfig).map((packageConfig) => {
+        if (Array.isArray(packageConfig.redirects)) {
+            packageConfig.redirects.forEach((redirect) => void redirects.push(redirect));
         }
     });
 
-    console.log(`Creating redirects file`);
+    console.log('Creating redirects file');
     console.log(redirects.join('\n'));
     fs.writeFileSync(path.resolve(BUILD_FOLDER_NAME, '_redirects'), redirects.join('\n'));
 

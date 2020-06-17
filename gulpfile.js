@@ -9,6 +9,7 @@ module.exports['watch-sanity'] = require('./tasks/watch').watchSanity;
 module.exports['watch-yorha'] = require('./tasks/watch').watchYorha;
 
 module.exports.default = (cb) => {
+    // eslint-disable-next-line no-console
     console.log('No task specified.');
     cb();
 };

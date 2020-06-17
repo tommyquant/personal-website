@@ -10,13 +10,13 @@ module.exports = {
     sanity: {
         execute: {
             command: WATCH_SCRIPT_NAME,
-            args: `--port 3333`
+            args: '--port 3333'
         }
     },
     yorha: {
         execute: {
             command: WATCH_SCRIPT_NAME,
-            args: `--port 9001`
+            args: '--port 9001'
         }
     }
 };

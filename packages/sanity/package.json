@@ -27,7 +27,10 @@
   },
   "devDependencies": {
     "@sanity/cli": "^1.149.9",
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0"
+    "eslint": "^7.2.0",
+    "eslint-config-tq": "https://github.com/tommyquant/eslint-config-tq.git",
+    "eslint-plugin-react": "^7.20.0",
+    "stylelint": "^13.6.0",
+    "stylelint-config-tq": "https://github.com/tommyquant/stylelint-config-tq.git"
   }
 }

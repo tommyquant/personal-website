@@ -4,40 +4,40 @@ const {getPackagesConfig} = require('./package-configs');
 const packagesConfig = getPackagesConfig(['watch']);
 
 function watchApp() {
-    const package = packagesConfig.app;
+    const packageConfig = packagesConfig.app;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 function watchSanity() {
-    const package = packagesConfig.sanity;
+    const packageConfig = packagesConfig.sanity;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
 
 function watchYorha() {
-    const package = packagesConfig.yorha;
+    const packageConfig = packagesConfig.yorha;
 
     return runScript(
-        package.execute.command,
-        package.execute.args,
+        packageConfig.execute.command,
+        packageConfig.execute.args,
         {
-            cwd: package.directory,
-            env: package.env
+            cwd: packageConfig.directory,
+            env: packageConfig.env
         }
     );
 }
@@ -46,4 +46,4 @@ module.exports = {
     watchApp,
     watchSanity,
     watchYorha
-}
+};

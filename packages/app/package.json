@@ -33,9 +33,10 @@
     "yorha": "0.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0",
-    "stylelint": "^13.3.3",
-    "stylelint-order": "^4.0.0"
+    "eslint": "^7.2.0",
+    "eslint-config-tq": "https://github.com/tommyquant/eslint-config-tq.git",
+    "eslint-plugin-react": "^7.20.0",
+    "stylelint": "^13.6.0",
+    "stylelint-config-tq": "https://github.com/tommyquant/stylelint-config-tq.git"
   }
 }
