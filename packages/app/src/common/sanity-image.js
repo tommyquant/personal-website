@@ -16,6 +16,11 @@ export function getImageUrl(source) {
     return imageUrlBuilder.image(source).url();
 }
 
+/**
+ * Given a Sanity image source object, return an object where each entry is in the
+ * form of `width: url`. This object can then be easily converted to a srcset string.
+ * @param {*} source 
+ */
 export function getSrcsetOptions(source) {
     const id = source.asset._ref || source.asset._id;
 
@@ -23,9 +28,13 @@ export function getSrcsetOptions(source) {
         return undefined;
     }
 
+    // It is not always possible to retrieve the image's original dimensions
+    // through the source object's properties. Luckily, Sanity saves the
+    // original dimensions in the ID so we can just extract that.
     const [, originalWidth] = id.match(/-(\d+)x(\d+)-/);
 
     const srcsetOptions = WIDTHS.reduce((accum, width) => {
+        // Only add a new entry if the desired width is less than the original width
         if (width < originalWidth) {
             return {
                 ...accum,
