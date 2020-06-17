@@ -1,13 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import {rgba} from 'polished';
 
 import {fontFamily} from 'yorha/src/common/style/font';
 import {fuscousGray} from 'yorha/src/common/style/palette';
+import {TRANSITION_SECONDS_MEDIUM, TRANSITION_TIMING_FUNCTION} from 'yorha/src/common/style/transition';
 import AnimatedText from 'yorha/src/components/animated-text';
 
 import LeftDoubleBarLine from '../left-double-bar-line';
+
+const fadeInAnimation = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`;
 
 const OuterWrapper = styled.div`
     align-items: center;
@@ -36,6 +46,7 @@ const PageHeading = styled.h1`
 `;
 
 const InnerWrapper = styled.div`
+    animation: ${TRANSITION_SECONDS_MEDIUM}s ${fadeInAnimation} ${TRANSITION_TIMING_FUNCTION};
     display: flex;
     width: 100%;
 `;
