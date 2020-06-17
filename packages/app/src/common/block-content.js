@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import React from 'react';
-import BlockContent from '@sanity/block-content-to-react';
+import SanityBlockContent from '@sanity/block-content-to-react';
 
 import Blockquote from 'yorha/src/components/blockquote';
 
-import {getImageUrl, getSrcsetOptions} from '../../common/sanity-image';
-import ResponsiveImg from '../../components/responsive-img';
-import SyntaxHighlighter from '../../components/syntax-highlighter';
+import Link from '../components/link';
+import ResponsiveImg from '../components/responsive-img';
+import SyntaxHighlighter from '../components/syntax-highlighter';
+import Youtube from '../components/youtube';
 
-import Link from './components/link';
-import Youtube from './components/youtube';
+import {getImageUrl, getSrcsetOptions} from './sanity-image';
 
 const BlockRenderer = (props) => {
     const {style = 'normal'} = props.node;
@@ -21,7 +21,7 @@ const BlockRenderer = (props) => {
     
         default:
             // Fall back to default handling
-            return BlockContent.defaultSerializers.types.block(props);
+            return SanityBlockContent.defaultSerializers.types.block(props);
     }
 };
 
@@ -45,4 +45,13 @@ const serializers = {
     }
 };
 
-export default serializers;
+const BlockContent = (props) => (
+    <SanityBlockContent
+        projectId={process.env.GATSBY_SANITY_PROJECT_ID}
+        dataset={process.env.GATSBY_SANITY_DATASET}
+        serializers={serializers}
+        {...props}
+    />
+);
+
+export default BlockContent;
