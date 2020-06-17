@@ -7,7 +7,8 @@ module.exports = {
             GATSBY_TELEMETRY_DISABLED: 1,
             GATSBY_SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
             GATSBY_SANITY_DATASET: process.env.SANITY_DATASET,
-            GATSBY_WEBSITE_TITLE: process.env.WEBSITE_TITLE
+            GATSBY_WEBSITE_TITLE: process.env.WEBSITE_TITLE,
+            GATSBY_APP_SETTINGS_ENVIRONMENT: 'website-production'
         }
     },
     sanity: {
