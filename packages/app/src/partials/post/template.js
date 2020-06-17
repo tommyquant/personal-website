@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import BlockContent from '@sanity/block-content-to-react';
 
 import {fuscousGray} from 'yorha/src/common/style/palette';
 import {fontFamily, lineHeight} from 'yorha/src/common/style/font';
 import Card from 'yorha/src/components/card';
 
 import {getSrcsetOptions} from '../../common/sanity-image';
+import BlockContent from '../../common/block-content';
 import Content from '../../components/content';
 import ResponsiveImg from '../../components/responsive-img';
 import SEO from '../../partials/seo';
-
-import serializers from './serializers';
 
 const StyledCard = styled(Card)`
     box-sizing: border-box;
@@ -49,12 +47,7 @@ const PostTemplate = ({
                 )}
                 
                 {!!bodyRaw && (
-                    <BlockContent
-                        projectId={process.env.GATSBY_SANITY_PROJECT_ID}
-                        dataset={process.env.GATSBY_SANITY_DATASET}
-                        blocks={bodyRaw}
-                        serializers={serializers}
-                    />
+                    <BlockContent blocks={bodyRaw}/>
                 )}
             </StyledCard>
         </Content>

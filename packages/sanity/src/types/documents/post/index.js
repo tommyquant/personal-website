@@ -1,6 +1,5 @@
+import {commonFields as portableTextCommonFields} from '../../objects/portable-text';
 import {reference as imageExtendedRef} from '../../objects/image-extended';
-import {reference as syntaxHighlighterRef} from '../../objects/syntax-highlighter';
-import {reference as youtubeRef} from '../../objects/youtube';
 import {reference as authorRef} from '../author';
 import categories from './categories';
 
@@ -72,21 +71,7 @@ export default {
         {
             title: 'Body',
             name: 'body',
-            type: 'array',
-            of: [
-                {
-                    type: 'block'
-                },
-                {
-                    type: imageExtendedRef
-                },
-                {
-                    type: syntaxHighlighterRef
-                },
-                {
-                    type: youtubeRef
-                }
-            ]
+            ...portableTextCommonFields
         }
     ],
     preview: {
