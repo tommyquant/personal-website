@@ -10,7 +10,7 @@ import {getSrcsetFromOptions} from '../../common/srcset';
 const ImageWrapper = styled.div`
     width: 100%;
 
-    ${({center}) => center && css`
+    ${({$center}) => $center && css`
         display: flex;
         justify-content: center;
     `}
@@ -60,7 +60,7 @@ const ResponsiveImg = ({
         <ImageWrapper
             className={className}
             ref={wrapperRef}
-            center={center}
+            $center={center}
             {...htmlAttributes}
         >
             <StyledImg

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+
+import transition from 'yorha/src/common/style/transition';
 
 const Container = styled.div`
     display: grid;
@@ -13,14 +15,59 @@ const Container = styled.div`
     }
 `;
 
+const ChildWrapper = styled.div`
+    opacity: 0;
+    transition: ${transition('opacity')};
+
+    ${({$visible}) => $visible && css`
+        opacity: 1;
+    `}
+`;
+
+function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest callback.
+    useEffect(() => {
+        savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+        }
+    }, [delay]);
+}
+
 const PostGrid = ({
     children,
     className,
     ...htmlAttributes
 }) => {
+    const [visibilityFlags, setVisibilityFlags] = useState([]);
+    const [isComplete, setIsComplete] = useState(false);
+
+    useInterval(() => {
+        if (visibilityFlags.length === React.Children.count(children)) {
+            setIsComplete(true);
+            return;
+        }
+
+        setVisibilityFlags((prev) => [...prev, true]);
+    }, isComplete ? null : 100);
+
     return (
         <Container className={className} {...htmlAttributes}>
-            {children}
+            {React.Children.map(children, (child, index) => (
+                <ChildWrapper $visible={visibilityFlags[index]}>
+                    {child}
+                </ChildWrapper>
+            ))}
         </Container>
     );
 };
