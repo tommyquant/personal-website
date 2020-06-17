@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 
-const TITLE_SUFFIX = ' — Website Title';
-
 const DEFAULTS = {
-    title: 'Website Title'
+    title: process.env.GATSBY_WEBSITE_TITLE || 'Website Title'
 };
+
+const TITLE_SUFFIX = ` — ${DEFAULTS.title}`;
 
 const SEO = ({
     title
