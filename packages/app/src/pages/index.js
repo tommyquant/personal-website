@@ -12,43 +12,55 @@ import PostGrid from '../components/post-grid';
 import PostCard from '../components/post-card';
 import SEO from '../partials/seo';
 
+import NotFound from './404';
+
 const StyledLink = styled(Link)`
     outline: none;
     text-decoration: none;
 `;
 
-const query = gql`
-    {
-        allPost {
+const GET_FEATURED_POSTS = gql`
+    query ($environment: String!) {
+        allAppSettings(where: {environment: {eq: $environment}}) {
+            featured_posts {
             title
-            slug {
-                current
-            }
-            feature_image {
-                description
-                asset {
-                    _id
-                    url
+                slug {
+                    current
                 }
+                feature_image {
+                    description
+                    asset {
+                        _id
+                        url
+                    }
+                }
+                description
             }
-            description
         }
     }
 `;
 
 const Home = () => {
-    const {loading, error, data} = useQuery(query);
+    const {loading, error, data} = useQuery(GET_FEATURED_POSTS, {
+        variables: {
+            environment: process.env.GATSBY_APP_SETTINGS_ENVIRONMENT
+        }
+    });
 
     if (loading) return <ContentLoader />;
 
     if (error) return <ContentError />;
+
+    if (data.allAppSettings.length < 1) return <NotFound />;
+
+    const appSettings = data.allAppSettings[0];
 
     return (
         <Content heading="Projects">
             <SEO />
 
             <PostGrid>
-                {Array.isArray(data.allPost) && data.allPost.map(({
+                {Array.isArray(appSettings.featured_posts) && appSettings.featured_posts.map(({
                     title,
                     slug,
                     feature_image,

@@ -38,7 +38,7 @@ const StyledCard = styled(Card)`
 const About = () => {
     const {loading, error, data} = useQuery(GET_APP_SETTINGS_BY_ENVIRONMENT, {
         variables: {
-            environment: 'website-production'
+            environment: process.env.GATSBY_APP_SETTINGS_ENVIRONMENT
         }
     });
 
