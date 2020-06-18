@@ -1,6 +1,6 @@
 {
   "name": "personal-website",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "serve": "npx http-server public -p 3333 --gzip",
