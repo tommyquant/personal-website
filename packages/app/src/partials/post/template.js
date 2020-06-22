@@ -42,6 +42,7 @@ const PostTemplate = ({
                         center
                         srcsetOptions={getSrcsetOptions(feature_image)}
                         fallbackSrc={feature_image.asset.url}
+                        lqip={feature_image.asset.metadata.lqip}
                         alt={feature_image.description}
                     />
                 )}

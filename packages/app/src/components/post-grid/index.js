@@ -59,7 +59,7 @@ const PostGrid = ({
         }
 
         setVisibilityFlags((prev) => [...prev, true]);
-    }, isComplete ? null : 75);
+    }, isComplete ? null : 50);
 
     return (
         <Container className={className} {...htmlAttributes}>

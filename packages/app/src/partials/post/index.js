@@ -19,6 +19,9 @@ const GET_POST_BY_SLUG = gql`
                 asset {
                     _id
                     url
+                    metadata {
+                        lqip
+                    }
                 }
             }
             bodyRaw

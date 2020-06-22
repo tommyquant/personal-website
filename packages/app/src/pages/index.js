@@ -32,6 +32,9 @@ const GET_FEATURED_POSTS = gql`
                     asset {
                         _id
                         url
+                        metadata {
+                            lqip
+                        }
                     }
                 }
                 description
@@ -75,6 +78,7 @@ const Home = () => {
                             <PostCard.Header.Image
                                 srcsetOptions={getSrcsetOptions(feature_image)}
                                 fallbackSrc={feature_image.asset.url}
+                                lqip={feature_image.asset.metadata.lqip}
                                 alt={feature_image.description}
                             />
                             <PostCard.Header.Title>

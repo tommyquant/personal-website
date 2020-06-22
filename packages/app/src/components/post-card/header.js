@@ -9,6 +9,8 @@ import HeaderTitle from './header-title';
 
 const StyledResponsiveImg = styled(ResponsiveImg)`
     filter: sepia(1);
+    height: 0;
+    padding-bottom: 56.25%; /* Fixes the image to a 16:9 ratio even if it hasn't loaded yet */
     transition: ${transition('filter')};
 `;
 

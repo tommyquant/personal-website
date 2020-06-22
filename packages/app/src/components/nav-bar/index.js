@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {softAmber} from 'yorha/src/common/style/palette';
 import Button from 'yorha/src/components/button';
 
 import LeftDoubleBarLine from '../../components/left-double-bar-line';
 import PageDivider from '../../components/page-divider';
 
 const Navigation = styled.nav`
-    background-color: ${softAmber};
     display: grid;
     grid-auto-rows: max-content;
     grid-gap: 1rem;

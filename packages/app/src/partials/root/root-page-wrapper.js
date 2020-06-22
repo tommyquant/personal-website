@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {Match} from '@reach/router';
 import {Link} from 'gatsby';
 
-import {fuscousGray, taupeGray, softAmber} from 'yorha/src/common/style/palette';
+import {fuscousGray, taupeGray} from 'yorha/src/common/style/palette';
 import Background from 'yorha/src/components/graphics/background';
 import Overlay from 'yorha/src/components/graphics/overlay';
 
@@ -46,7 +46,6 @@ const Content = styled.section`
 `;
 
 const StyledFooter = styled.footer`
-    background-color: ${softAmber};
     padding-bottom: var(--page-vertical-margin);
 `;
 
