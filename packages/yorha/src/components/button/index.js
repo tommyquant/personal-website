@@ -6,14 +6,12 @@ import {fontFamily} from '../../common/style/font';
 import {athsSpecial, fuscousGray, softAmber, taupeGray} from '../../common/style/palette';
 import transition from '../../common/style/transition';
 
-const BAR_OFFSET_EM = '0.22';
-
 const activeStyles = css`
     color: ${softAmber};
 
     &::before {
         background-color: ${fuscousGray};
-        width: 100%;
+        transform: scaleX(1);
     }
 
     &:focus,
@@ -62,13 +60,15 @@ const interactiveStyles = css`
     /* Background */
     &::before {
         background-color: ${fuscousGray};
-        bottom: 0;
         content: '';
+        height: 100%;
         left: 0;
         position: absolute;
         top: 0;
-        transition: ${transition('background-color', 'bottom', 'top', 'width')};
-        width: 0;
+        transform: scaleX(0);
+        transform-origin: 0;
+        transition: ${transition('transform')};
+        width: 100%;
     }
 
     /* Bars */
@@ -76,27 +76,27 @@ const interactiveStyles = css`
         border: 2px solid ${fuscousGray};
         border-left: none;
         border-right: none;
-        bottom: 0;
         box-sizing: border-box;
         content: '';
-        left: 0%;
+        height: 125%;
+        left: 0;
         opacity: 0;
         position: absolute;
-        top: 0;
-        transition: ${transition('bottom', 'opacity', 'top')};
+        top: -12.5%;
+        transform: scaleY(0.8);
+        transition: ${transition('opacity', 'transform')};
         width: 100%;
     }
 
     &:focus,
     &:hover {
         &::before {
-            width: 100%;
+            transform: scaleX(1);
         }
 
         &::after {
-            bottom: -${BAR_OFFSET_EM}em;
             opacity: 1;
-            top: -${BAR_OFFSET_EM}em;
+            transform: scaleY(1);
         }
     }
 
